@@ -4,7 +4,6 @@
         Height="480" Width="640"
         Background="#262626" Icon="icon.ico" ResizeMode="CanMinimize"
         Title="MTG Card Generator">
-    <Grid>
-        
+    <Grid>        
     </Grid>
 </Window>

@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="MTGCardGenerator.GenerateCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="640">
+
+    <StackPanel Margin="10">
+        <!-- Page Title -->
+        <TextBlock Margin="0 0 0 5" Style="{StaticResource tbl_Header}">Generate Card</TextBlock>
+
+        <!-- Page Content -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="40*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0 0 5 0">
+                <!-- Card Name -->
+                <Grid Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*" /> <!-- Label -->
+                        <ColumnDefinition Width="85*" /> <!-- Text Block -->
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
+                    <TextBox Grid.Column="1"></TextBox>
+                </Grid>
+                
+                <!-- Casting Cost -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*" /> <!-- Label -->
+                        <ColumnDefinition Width="35*" /> <!-- Text Block -->
+                        <ColumnDefinition Width="5*" /> <!-- Margin -->
+                        <ColumnDefinition Width="10*" /> <!-- Label -->
+                        <ColumnDefinition Width="15*" /> <!-- Label -->
+                        <ColumnDefinition Width="15*" /> <!-- Label -->
+                        <ColumnDefinition Width="5*" /> <!-- Text Block-->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Casting Cost -->
+                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Cost:</TextBlock>
+                    <TextBox Grid.Column="1"></TextBox>
+                    
+                    <!-- CMC -->
+                    <TextBlock Grid.Column="3" Style="{StaticResource tbl_Label}">CMC:</TextBlock>
+                    <TextBox Grid.Column="4"></TextBox>
+                    <TextBlock Grid.Column="5" Style="{StaticResource tbl_Label}">Infer?</TextBlock>
+                    <CheckBox Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>

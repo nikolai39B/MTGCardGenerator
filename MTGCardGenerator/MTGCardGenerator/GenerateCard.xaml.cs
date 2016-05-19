@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace MTGCardGenerator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GenerateCard.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GenerateCard : UserControl
     {
-        public MainWindow()
+        public GenerateCard()
         {
             InitializeComponent();
-            this.Content = new GenerateCard();
         }
     }
 }
