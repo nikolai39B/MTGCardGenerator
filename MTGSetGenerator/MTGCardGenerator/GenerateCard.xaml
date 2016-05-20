@@ -101,6 +101,9 @@
                         <TextBlock Grid.Row="1" Style="{StaticResource tbl_Normal}" >Use &lt;f>TEXT&lt;/f> for flavor text and italics.</TextBlock>
                     </Grid>
                 </Grid>
+                
+                <!-- Font Size -->
+                <!-- TODO: Implement -->
 
                 <!-- Set -->
                 <Grid Margin="0 0 0 5">
@@ -134,6 +137,57 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Image:</TextBlock>
                     <TextBlock Grid.Column="1" Style="{StaticResource tbl_Normal}">dancer_of_the_boreal_valley.png</TextBlock>
                     <Button Content="Browse..." Grid.Column="3" />
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"  Margin="5 0 0 0">
+                <Image Margin="0 0 0 5" Source="C:\Users\ad3vfw\Documents\Visual Studio 2013\Projects\MTGSetGenerator\MTGSetGenerator\MTGCardGenerator\img\gold_border.png" Width="200"/>
+
+                <!-- Card Colors -->
+                <Grid Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22.5*" />
+                        <ColumnDefinition Width="35*" />
+                        <ColumnDefinition Width="7.5*" />
+                        <ColumnDefinition Width="35*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Color:</TextBlock>
+                    <ComboBox Grid.Column="1" SelectedIndex="0">
+                        <ComboBoxItem>Colorless</ComboBoxItem>
+                        <ComboBoxItem>White</ComboBoxItem>
+                        <ComboBoxItem>Blue</ComboBoxItem>
+                        <ComboBoxItem>Black</ComboBoxItem>
+                        <ComboBoxItem>Red</ComboBoxItem>
+                        <ComboBoxItem>Green</ComboBoxItem>
+                        <ComboBoxItem>Gold</ComboBoxItem>
+                    </ComboBox>
+
+                    <WrapPanel Grid.Column="3" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource tbl_Label}">Infer Color?</TextBlock>
+                        <CheckBox HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
+                    </WrapPanel>
+
+                </Grid>
+                
+                <!-- Reset and Save Buttons -->
+                <Grid Margin="12 17 12 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="45*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="Auto" />                        
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Help" Grid.Column="0" Grid.Row="0" />
+                    <Button Content="Clear" Grid.Column="2" Grid.Row="0" />
+                    <Button Content="Back" Grid.Column="0" Grid.Row="2" />
+                    <Button Content="Save" Grid.Column="2" Grid.Row="2" />
                 </Grid>
             </StackPanel>
         </Grid>
