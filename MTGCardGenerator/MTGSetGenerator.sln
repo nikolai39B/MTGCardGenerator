@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTGCardGenerator", "MTGCardGenerator\MTGCardGenerator.csproj", "{3F9BFDD1-AD71-4439-ACCF-3D402C3B5FB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTGSetGenerator", "MTGCardGenerator\MTGSetGenerator.csproj", "{3F9BFDD1-AD71-4439-ACCF-3D402C3B5FB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
