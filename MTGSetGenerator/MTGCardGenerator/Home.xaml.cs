@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MTGCardGenerator
+namespace MTGSetGenerator
 {
     /// <summary>
     /// Interaction logic for Home.xaml
@@ -23,6 +23,43 @@ namespace MTGCardGenerator
         public Home()
         {
             InitializeComponent();
+        }
+
+        //----------------//
+        // Initialization //
+        //----------------//
+        private void LoadCardJson()
+        {
+
+        }
+
+        //----------------//
+        // Event Handlers //
+        //----------------//
+        private void b_AddNewSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_EditExistingSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_Options_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_Help_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Window parent = Window.GetWindow(this);
+            parent.Close();
         }
     }
 }

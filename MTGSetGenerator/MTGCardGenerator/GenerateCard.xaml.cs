@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MTGCardGenerator
+namespace MTGSetGenerator
 {
     /// <summary>
     /// Interaction logic for GenerateCard.xaml

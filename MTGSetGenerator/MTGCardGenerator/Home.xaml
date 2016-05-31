@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MTGCardGenerator.Home"
+﻿<UserControl x:Class="MTGSetGenerator.Home"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,18 +18,18 @@
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="5" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource b_MainMenu}">Add New Set</Button>
-            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource b_MainMenu}">Edit Existing Set</Button>
-            <Button Grid.Column="1" Grid.Row="4" Style="{StaticResource b_MainMenu}">Options</Button>
-            <Button Grid.Column="1" Grid.Row="6" Style="{StaticResource b_MainMenu}">Help</Button>
-            <Button Grid.Column="1" Grid.Row="8" Style="{StaticResource b_MainMenu}">Exit</Button>
+            <Button Name="b_AddNewSet" Click="b_AddNewSet_Click" Grid.Column="1" Grid.Row="0" Style="{StaticResource b_MainMenu}">Add New Set</Button>
+            <Button Name="b_EditExistingSet" Click="b_EditExistingSet_Click" Grid.Column="1" Grid.Row="2" Style="{StaticResource b_MainMenu}">Edit Existing Set</Button>
+            <Button Name="b_Options" Click="b_Options_Click" Grid.Column="1" Grid.Row="4" Style="{StaticResource b_MainMenu}">Options</Button>
+            <Button Name="b_Help" Click="b_Help_Click" Grid.Column="1" Grid.Row="6" Style="{StaticResource b_MainMenu}">Help</Button>
+            <Button Name="b_Exit" Click="b_Exit_Click" Grid.Column="1" Grid.Row="8" Style="{StaticResource b_MainMenu}">Exit</Button>
         </Grid>
     </StackPanel>
 </UserControl>

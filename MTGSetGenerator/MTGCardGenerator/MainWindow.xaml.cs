@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MTGCardGenerator
+namespace MTGSetGenerator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,6 +24,15 @@ namespace MTGCardGenerator
         {
             InitializeComponent();
             this.Content = new Home();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want to close MTG Set Generator?", "Close", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }            
         }
     }
 }
