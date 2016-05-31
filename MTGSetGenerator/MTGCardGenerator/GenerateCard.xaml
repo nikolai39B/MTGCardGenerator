@@ -53,7 +53,7 @@
                 </Grid>
 
                 <!-- Card Type -->
-                <Grid Margin="0 0 0 5">
+                <Grid Margin="0 0 0 5" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*" />
                         <ColumnDefinition Width="45*" />
@@ -98,7 +98,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBox AcceptsReturn="True" Grid.Row="0" Height="200"></TextBox>
-                        <TextBlock Grid.Row="1" Style="{StaticResource tbl_Normal}" >Use &lt;f>TEXT&lt;/f> for flavor text and italics.</TextBlock>
+                        <TextBlock Grid.Row="1" Style="{StaticResource tbl_Default}" >Use &lt;f>TEXT&lt;/f> for flavor text and italics.</TextBlock>
                     </Grid>
                 </Grid>
                 
@@ -135,13 +135,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Image:</TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource tbl_Normal}">dancer_of_the_boreal_valley.png</TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource tbl_Default}">dancer_of_the_boreal_valley.png</TextBlock>
                     <Button Content="Browse..." Grid.Column="3" />
                 </Grid>
             </StackPanel>
 
             <StackPanel Grid.Column="1"  Margin="5 0 0 0">
-                <Image Margin="0 0 0 5" Source="C:\Users\ad3vfw\Documents\Visual Studio 2013\Projects\MTGSetGenerator\MTGSetGenerator\MTGCardGenerator\img\gold_border.png" Width="200"/>
+                <Image Margin="0 0 0 5" Source="{StaticResource img_FrameGold}" Width="200"/>
 
                 <!-- Card Colors -->
                 <Grid Margin="0 0 0 5">
@@ -184,7 +184,7 @@
                         <RowDefinition Height="Auto" />                        
                     </Grid.RowDefinitions>
 
-                    <Button Content="Help" Grid.Column="0" Grid.Row="0" />
+                    <Button Name="b_Help" Click="b_Help_Click" Content="Help" Grid.Column="0" Grid.Row="0" />
                     <Button Content="Clear" Grid.Column="2" Grid.Row="0" />
                     <Button Content="Back" Grid.Column="0" Grid.Row="2" />
                     <Button Content="Save" Grid.Column="2" Grid.Row="2" />

@@ -116,6 +116,19 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\black_border.png" />
+    <Resource Include="images\blue_border.png" />
+    <Resource Include="images\card_symbols.png" />
+    <Resource Include="images\gold_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\green_border.png" />
+    <Resource Include="images\red_border.png" />
+    <Resource Include="images\silver_border.png" />
+    <Resource Include="images\white_border.png" />
+    <Resource Include="images\white_square.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

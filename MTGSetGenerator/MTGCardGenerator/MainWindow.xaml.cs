@@ -23,7 +23,7 @@ namespace MTGCardGenerator
         public MainWindow()
         {
             InitializeComponent();
-            this.Content = new GenerateCard();
+            this.Content = new Home();
         }
     }
 }

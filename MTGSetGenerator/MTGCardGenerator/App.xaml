@@ -4,28 +4,48 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- ComboBoxItem Styles-->
+        
+        <!-- Button Styles -->
+        <Style x:Key="b_MainMenu" TargetType="Button">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Height" Value="60" />
+        </Style>
                 
         <!-- TextBlock Styles -->
-        <Style x:Key="tbl_Normal" TargetType="{x:Type TextBlock}">
+        <Style x:Key="tbl_Default" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#ffffff" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="tbl_Title" BasedOn="{StaticResource tbl_Normal}" TargetType="{x:Type TextBlock}">
+        <Style x:Key="tbl_LargeTitle" BasedOn="{StaticResource tbl_Default}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="tbl_Title" BasedOn="{StaticResource tbl_Default}" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="32" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="tbl_Header" BasedOn="{StaticResource tbl_Normal}" TargetType="{x:Type TextBlock}">
+        <Style x:Key="tbl_Header" BasedOn="{StaticResource tbl_Default}" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="24" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="tbl_Label" BasedOn="{StaticResource tbl_Normal}" TargetType="{x:Type TextBlock}">
+        <Style x:Key="tbl_Label" BasedOn="{StaticResource tbl_Default}" TargetType="{x:Type TextBlock}">
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Padding" Value="0 0 4 0" />
         </Style>
+        
+        <!-- Images -->
+        <BitmapImage x:Key="img_FrameWhite" UriSource="./images/white_border.png" />
+        <BitmapImage x:Key="img_FrameBlue" UriSource="./images/blue_border.png" />
+        <BitmapImage x:Key="img_FrameBlack" UriSource="./images/black_border.png" />
+        <BitmapImage x:Key="img_FrameGreen" UriSource="./images/green_border.png" />
+        <BitmapImage x:Key="img_FrameRed" UriSource="./images/red_border.png" />
+        <BitmapImage x:Key="img_FrameGold" UriSource="./images/gold_border.png" />
+        <BitmapImage x:Key="img_FrameSilver" UriSource="./images/silver_border.png" />
 
     </Application.Resources>
 </Application>

@@ -24,5 +24,10 @@ namespace MTGCardGenerator
         {
             InitializeComponent();
         }
+
+        private void b_Help_Click(object sender, RoutedEventArgs e)
+        {
+            b_Help.Content = "Clicked";
+        }
     }
 }
