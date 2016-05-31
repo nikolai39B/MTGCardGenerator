@@ -38,7 +38,8 @@ namespace MTGSetGenerator
         //----------------//
         private void b_AddNewSet_Click(object sender, RoutedEventArgs e)
         {
-
+            Window addNewSetWindow = new AddNewSetWindow();
+            bool? result = addNewSetWindow.ShowDialog();
         }
 
         private void b_EditExistingSet_Click(object sender, RoutedEventArgs e)

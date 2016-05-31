@@ -104,28 +104,6 @@
                 
                 <!-- Font Size -->
                 <!-- TODO: Implement -->
-
-                <!-- Set -->
-                <!--
-                <Grid Margin="0 0 0 5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="15*" />
-                        <ColumnDefinition Width="55*" />
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="25*" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Set:</TextBlock>
-                    <ComboBox Grid.Column="1" SelectedIndex="0">
-                        <ComboBoxItem>Shards of Alara</ComboBoxItem>
-                        <ComboBoxItem>Battle for Zendikar</ComboBoxItem>
-                        <ComboBoxItem>Journey to Lordran</ComboBoxItem>
-                        <ComboBoxItem>Expdition in Drangleic</ComboBoxItem>
-                        <ComboBoxItem>Fight for Lothric</ComboBoxItem>
-                    </ComboBox>
-                    <Button Content="Add New Set" Grid.Column="3" />
-                </Grid>
-                -->
                 
                 <!-- Power / Toughness / Loyalty -->
                 <Grid Margin="0 0 0 5">

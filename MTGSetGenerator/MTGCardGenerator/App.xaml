@@ -46,6 +46,7 @@
         <BitmapImage x:Key="img_FrameRed" UriSource="./images/red_border.png" />
         <BitmapImage x:Key="img_FrameGold" UriSource="./images/gold_border.png" />
         <BitmapImage x:Key="img_FrameSilver" UriSource="./images/silver_border.png" />
+        <BitmapImage x:Key="img_DarksignIcon" UriSource="./images/darksign_icon.png" />
 
     </Application.Resources>
 </Application>
