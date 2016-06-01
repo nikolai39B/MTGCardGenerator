@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="MTGSetGenerator.ViewSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  
+             d:DesignHeight="480" d:DesignWidth="640">
+    <StackPanel Margin="10">
+        <!-- Page Title -->
+        <TextBlock Margin="0 0 0 5" Style="{StaticResource tbl_Header}">View / Edit Set</TextBlock>
+        
+        <Grid Margin="0 0 0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Name="b_AddCard" Content="Add Card" Width="125" />
+            <Button Name="b_ViewDetails" Content="d" Width="125" />
+            <Button Name="b_AddCard" Content="Add Card" Width="125" />
+            <Button Name="b_AddCard" Content="Add Card" Width="125" />
+        </Grid>
+    </StackPanel>
+</UserControl>

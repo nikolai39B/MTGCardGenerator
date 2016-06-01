@@ -74,6 +74,9 @@
     <Compile Include="AddNewSetWindow.xaml.cs">
       <DependentUpon>AddNewSetWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewSet.xaml.cs">
+      <DependentUpon>ViewSet.xaml</DependentUpon>
+    </Compile>
     <Page Include="GenerateCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +104,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AddNewSetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
