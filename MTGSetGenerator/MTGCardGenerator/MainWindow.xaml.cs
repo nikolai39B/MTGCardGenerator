@@ -23,6 +23,7 @@ namespace MTGSetGenerator
         public MainWindow()
         {
             InitializeComponent();
+            CardCollectionManager.InitializeJsonCollection();
             this.Content = new Home();
         }
 
