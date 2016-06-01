@@ -23,5 +23,21 @@ namespace MTGSetGenerator
         {
             InitializeComponent();
         }
+
+        // TODO: improve dialog
+
+        //----------------//
+        // Event Handlers //
+        //----------------//
+
+        private void b_AddSet_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void b_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
     }
 }

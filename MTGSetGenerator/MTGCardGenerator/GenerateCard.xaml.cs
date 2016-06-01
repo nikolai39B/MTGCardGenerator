@@ -22,14 +22,45 @@ namespace MTGSetGenerator
     /// </summary>
     public partial class GenerateCard : UserControl
     {
-        public GenerateCard()
+        /// <summary>
+        /// Instantiates a GenerateCard user control.
+        /// </summary>
+        /// <param name="controlToReturnTo">The control to return to if the cancel or save buttons are pressed.</param>
+        public GenerateCard(ContentControl controlToReturnTo)
         {
+            this.controlToReturnTo = controlToReturnTo;
             InitializeComponent();
         }
 
+
+        //----------------//
+        // Parent Objects //
+        //----------------//
+
+        private ContentControl controlToReturnTo;
+
+
+        //----------------//
+        // Event Handlers //
+        //----------------//
+
         private void b_Help_Click(object sender, RoutedEventArgs e)
         {
-            b_Help.Content = "Clicked";
+            
+        }
+
+        private void b_Clear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Cancel card generation and discard changes?", "Cancel", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Window.GetWindow(this).Content = controlToReturnTo;
+            }
         }
 
         private void b_Save_Click(object sender, RoutedEventArgs e)

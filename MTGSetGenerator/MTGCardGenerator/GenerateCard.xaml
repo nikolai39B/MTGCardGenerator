@@ -193,9 +193,9 @@
                     </Grid.RowDefinitions>
 
                     <Button Name="b_Help" Click="b_Help_Click" Content="Help" Grid.Column="0" Grid.Row="0" />
-                    <Button Content="Clear" Grid.Column="2" Grid.Row="0" />
-                    <Button Content="Cancel" Grid.Column="0" Grid.Row="2" />
-                    <Button Name="b_Save" Click="b_Save_Click"  Content="Save" Grid.Column="2" Grid.Row="2" />
+                    <Button Name="b_Clear" Click="b_Clear_Click" Content="Clear" Grid.Column="2" Grid.Row="0" />
+                    <Button Name="b_Cancel" Click="b_Cancel_Click" Content="Cancel" Grid.Column="0" Grid.Row="2" />
+                    <Button Name="b_Save" Click="b_Save_Click" Content="Save" Grid.Column="2" Grid.Row="2" />
                 </Grid>
             </StackPanel>
         </Grid>

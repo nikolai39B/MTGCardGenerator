@@ -24,5 +24,15 @@ namespace MTGSetGenerator
         {
             InitializeComponent();
         }
+
+
+        //----------------//
+        // Event Handlers //
+        //----------------//
+
+        private void b_Back_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Content = new Home();
+        }
     }
 }
