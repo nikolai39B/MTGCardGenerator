@@ -12,18 +12,19 @@ namespace MTGSetGenerator
     [DataContract]
     internal class JsonCollection
     {
+        [DataMember]
         internal List<JsonSet> sets = new List<JsonSet>();
+
+        [DataMember]
         internal List<JsonCard> cards = new List<JsonCard>();
     }
-
 
     [DataContract]
     internal class JsonSet
     {
+        [DataMember]
         internal List<int> cardIds = new List<int>();
     }
-
-
 
     [DataContract]
     internal class JsonCard

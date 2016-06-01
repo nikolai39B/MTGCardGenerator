@@ -19,8 +19,8 @@
 
             <Button Name="b_AddCard" Content="Add Card" Width="125" />
             <Button Name="b_ViewDetails" Content="d" Width="125" />
-            <Button Name="b_AddCard" Content="Add Card" Width="125" />
-            <Button Name="b_AddCard" Content="Add Card" Width="125" />
+            <Button Name="b_Back" Content="Add Card" Width="125" />
+            <Button Name="b_GetSheet" Content="Add Card" Width="125" />
         </Grid>
     </StackPanel>
 </UserControl>
