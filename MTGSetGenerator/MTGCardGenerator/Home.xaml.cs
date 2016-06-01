@@ -44,7 +44,7 @@ namespace MTGSetGenerator
 
         private void b_EditExistingSet_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.GetWindow(this).Content = new GenerateCard();
         }
 
         private void b_Options_Click(object sender, RoutedEventArgs e)
