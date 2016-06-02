@@ -150,5 +150,31 @@ namespace MTGSetGenerator
                 WriteJsonCollection();
             }
         }
+
+        /// <summary>
+        /// Add a new json set to the card collection.
+        /// </summary>
+        /// <param name="newSet">The set to add.</param>
+        public static void AddSet(JsonSet newSet)
+        {
+            if (!Collection.sets.Contains(newSet))
+            {
+                Collection.sets.Add(newSet);
+                WriteJsonCollection();
+            }
+        }
+
+        /// <summary>
+        /// Removes a json set from the card collection.
+        /// </summary>
+        /// <param name="set">The set to remove.</param>
+        public static void RemoveSet(JsonSet set)
+        {
+            if (Collection.sets.Contains(set))
+            {
+                Collection.sets.Remove(set);
+                WriteJsonCollection();
+            }
+        }
     }
 }

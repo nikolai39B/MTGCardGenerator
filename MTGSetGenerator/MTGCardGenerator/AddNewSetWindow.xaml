@@ -58,10 +58,10 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Image:</TextBlock>
-                <TextBlock Grid.Column="1" Margin="0 0 5 0" Style="{StaticResource tbl_Default}">darksign_icon.png</TextBlock>
+                <TextBlock Name="tbl_SetIconFilename" Grid.Column="1" Margin="0 0 5 0" Style="{StaticResource tbl_Default}">darksign_icon.png</TextBlock>
                 <Image Grid.Column="2" Width="22px" Source="{StaticResource img_SetIconBackground}" />
-                <Image Grid.Column="2" Width="20px" Source="{StaticResource img_DarksignIcon}" />
-                <Button Name="b_Browse" Content="Browse..." Grid.Column="3" HorizontalAlignment="Right" Width="125" />
+                <Image Name="img_SetIcon" Grid.Column="2" MaxHeight="20px" MaxWidth="20px" Source="{StaticResource img_DarksignIcon}" Visibility="Hidden" />
+                <Button Name="b_Browse" Click="b_Browse_Click" Content="Browse..." Grid.Column="3" HorizontalAlignment="Right" Width="125" />
             </Grid>
         </StackPanel>
     </DockPanel>

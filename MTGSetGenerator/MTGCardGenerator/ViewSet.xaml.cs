@@ -25,6 +25,19 @@ namespace MTGSetGenerator
             InitializeComponent();
         }
 
+        //-------------//
+        // Switch Sets //
+        //-------------//
+
+        /// <summary>
+        /// Configures all UI elements for the given set, or for no set if the set is null.
+        /// </summary>
+        /// <param name="set">The set to configure for, or null for no set.</param>
+        private void ConfigureUIForSet(JsonSet set)
+        {
+
+        }
+
 
         //----------------//
         // Event Handlers //
