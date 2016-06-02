@@ -54,7 +54,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,19 +77,23 @@
     <Compile Include="AddNewSet.xaml.cs">
       <DependentUpon>AddNewSet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewSetWindow.xaml.cs">
-      <DependentUpon>AddNewSetWindow.xaml</DependentUpon>
+    <Compile Include="controls\SelectSetRow.xaml.cs">
+      <DependentUpon>SelectSetRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SelectSetWindow.xaml.cs">
-      <DependentUpon>SelectSetWindow.xaml</DependentUpon>
+    <Compile Include="SelectSet.xaml.cs">
+      <DependentUpon>SelectSet.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewSet.xaml.cs">
       <DependentUpon>ViewSet.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNewSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\SelectSetRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,11 +129,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="AddNewSetWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SelectSetWindow.xaml">
+    <Page Include="SelectSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

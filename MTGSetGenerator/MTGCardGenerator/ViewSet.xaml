@@ -17,11 +17,11 @@
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
 
-            <Button Name="b_SwitchSet" Content="Switch Set" Grid.Column="0" Width="125" />
+            <Button Name="b_SwitchSet" Click="b_SwitchSet_Click" Content="Switch Set" Grid.Column="0" Width="125" />
 
             <!-- Set Icon -->
-            <StackPanel Name="sp_SetNameAndIcon" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Grid>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Grid Name="g_SetIcon">
                     <Image Grid.Column="2" Width="22px" Source="{StaticResource img_SetIconBackground}" />
                     <Image Name="img_SetIcon" Width="20px" Source="{StaticResource img_DarksignIcon}" />
                 </Grid>
@@ -32,21 +32,29 @@
         </Grid>
 
         <!-- Set Cards-->
-        <ScrollViewer Height="297" Margin="0 0 0 5" />
-        
+        <ScrollViewer Name="sv_Cards" Height="297" Margin="0 0 0 5" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Name="sp_LeftCardsList" Grid.Column="0" Margin="5 5 2.5 5" />
+                <StackPanel Name="sp_RightCardsList" Grid.Column="1" Margin="2.5 5 5 5" />
+            </Grid>
+        </ScrollViewer>
+
         <!-- Search Bar -->
         <Grid Margin="0 0 0 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*" />
-                <ColumnDefinition Width="41*" />
-                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="66*" />
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
-            <TextBox Name="tb_SearchCardName" Grid.Column="1"></TextBox>
-            <Button Name="b_Search" Content="Search" Grid.Column="2" Width="125" />
-            <Button Name="b_AdvancedSearch" Content="Advanced Search" Grid.Column="3" Width="125" />
+            <TextBox Name="tb_SearchCardName" Grid.Column="1" TextChanged="tb_SearchCardName_TextChanged"></TextBox>
+            <Button Name="b_AdvancedSearch" Content="Advanced Search" Grid.Column="2" Width="125" />
         </Grid>
 
         <!-- Bottom Bar -->

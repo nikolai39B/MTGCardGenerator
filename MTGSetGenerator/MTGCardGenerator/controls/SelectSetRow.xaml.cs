@@ -10,33 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MTGSetGenerator
 {
     /// <summary>
-    /// Interaction logic for SelectSetWindow.xaml
+    /// Interaction logic for SelectSetRow.xaml
     /// </summary>
-    public partial class SelectSetWindow : Window
+    public partial class SelectSetRow : UserControl
     {
-        public SelectSetWindow()
+        /// <summary>
+        /// Instantiates a new select set row.
+        /// </summary>
+        /// <param name="setName">The set for this row.</param>
+        public SelectSetRow(JsonSet set)
         {
             InitializeComponent();
+
+            Set = set;
+            tbl_SetName.Text = set.setName;
         }
 
-        private void b_SelectSet_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void b_AddNewSet_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void b_Cancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        public JsonSet Set { get; private set; }
     }
 }

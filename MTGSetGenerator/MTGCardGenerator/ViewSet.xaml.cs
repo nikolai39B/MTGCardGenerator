@@ -47,12 +47,13 @@ namespace MTGSetGenerator
             // If the set is null, disable everything that the user shouldn't use
             if (Set == null)
             {
-                sp_SetNameAndIcon.Visibility = System.Windows.Visibility.Hidden;
+                g_SetIcon.Visibility = System.Windows.Visibility.Hidden;
+                tbl_SetName.Style = FindResource("tbl_Error") as Style;
+                tbl_SetName.Text = "Please select a set.";
 
                 b_AddCard.IsEnabled = false;
 
                 tb_SearchCardName.IsEnabled = false;
-                b_Search.IsEnabled = false;
                 b_AdvancedSearch.IsEnabled = false;
 
                 b_SetOptions.IsEnabled = false;
@@ -73,9 +74,19 @@ namespace MTGSetGenerator
         // Event Handlers //
         //----------------//
 
+        private void b_SwitchSet_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Content = new SelectSet(this);
+        }
+
         private void b_Back_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Content = new Home();
+        }
+
+        private void tb_SearchCardName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // TODO: implement search
         }
     }
 }
