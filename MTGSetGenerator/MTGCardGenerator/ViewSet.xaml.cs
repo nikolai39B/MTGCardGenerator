@@ -64,8 +64,10 @@ namespace MTGSetGenerator
             // Otherwise, configure the UI for the set
             else
             {
-                tbl_SetName.Text = Set.setName;
-                img_SetIcon.Source = Set.SetIcon;
+                tbl_SetName.Text = Set.name;
+                img_SetIcon.Source = Set.Icon;
+
+                // TODO fill in the cards
             }
         }
 
@@ -86,7 +88,7 @@ namespace MTGSetGenerator
 
         private void tb_SearchCardName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // TODO: implement search
+            // TODO implement search
         }
     }
 }

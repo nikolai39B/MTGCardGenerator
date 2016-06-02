@@ -24,31 +24,34 @@ namespace MTGSetGenerator
     public class JsonSet
     {
         [DataMember]
+        public string name;
+
+        [DataMember]
+        public int id;
+
+        [DataMember]
         public List<int> cardIds = new List<int>();
 
         [DataMember]
-        public string setName;
+        public string details;
 
         [DataMember]
-        public string setDetails;
+        public string iconPath;
 
-        [DataMember]
-        public string setIconPath;
-
-        private BitmapImage setIcon = null;
-        public BitmapImage SetIcon
+        private BitmapImage icon = null;
+        public BitmapImage Icon
         {
             get
             {
-                if (setIcon == null)
+                if (icon == null)
                 {
-                    setIcon = new BitmapImage(new Uri(setIconPath));
+                    icon = new BitmapImage(new Uri(iconPath));
                 }
-                return setIcon;
+                return icon;
             }
             set
             {
-                setIcon = value;
+                icon = value;
             }
         }
     }
@@ -58,5 +61,8 @@ namespace MTGSetGenerator
     {
         [DataMember]
         public string name;
+
+        [DataMember]
+        public int id;
     }
 }

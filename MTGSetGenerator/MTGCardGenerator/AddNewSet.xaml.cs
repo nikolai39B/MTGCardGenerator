@@ -104,14 +104,14 @@ namespace MTGSetGenerator
                 return;
             }
 
-            // TODO: save the set icon image to a defined location in case the user changes the source image
+            // TODO save the set icon image to a defined location in case the user changes the source image
             
             // Otherwise, create the set
             JsonSet newSet = new JsonSet()
             {
-                setName = tb_SetName.Text,
-                setDetails = tb_SetDetails.Text,
-                setIconPath = setIconFilePath
+                name = tb_SetName.Text,
+                details = tb_SetDetails.Text,
+                iconPath = setIconFilePath
             };
             CardCollectionManager.AddSet(newSet);
 

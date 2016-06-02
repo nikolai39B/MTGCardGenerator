@@ -29,7 +29,7 @@ namespace MTGSetGenerator
             InitializeComponent();
 
             Set = set;
-            tbl_SetName.Text = set.setName;
+            tbl_SetName.Text = set.name;
         }
 
         public JsonSet Set { get; private set; }

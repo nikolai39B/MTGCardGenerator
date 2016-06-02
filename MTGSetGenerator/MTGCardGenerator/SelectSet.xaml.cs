@@ -62,7 +62,7 @@ namespace MTGSetGenerator
                 }
             }
 
-            // TODO: add sorting functionality
+            // TODO add sorting functionality
         }
 
 
