@@ -38,10 +38,36 @@ namespace MTGSetGenerator
             //Make new card
             JsonCard newCard = new JsonCard();
             newCard.name = tb_CardName.Text;
+            newCard.power = (int)tb_CardPower.Text;
+            newCard.toughness = tb_CardToughness;
+            newCard.rarity = cm_CardRarity;
+            newCard.subtype = tb_CardSubtype;
 
             //Add card to collection manager
             CardCollectionManager.AddCard(newCard);
             
+        }
+
+
+        //--------------------//
+        // Processing Helpers //
+        //--------------------//
+
+        /// <summary>
+        /// Safely parses text which represents an integer. 
+        /// </summary>
+        /// <param name="intText"></param>
+        /// <returns></returns>
+
+        // TODO: Add print to 'save' error window
+        // TODO: Load state from previously suspended application
+        private int TextToInt(string intText)
+        {
+            int j;
+            if (Int32.TryParse("-105", out j))
+                Console.WriteLine(j);
+            else
+                Console.WriteLine("String could not be parsed.");
         }
     }
 }

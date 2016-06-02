@@ -24,11 +24,11 @@
                         <ColumnDefinition Width="15*" />
                         <ColumnDefinition Width="85*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
                     <TextBox Name="tb_CardName" Grid.Column="1"></TextBox>
                 </Grid>
-                
+
                 <!-- Casting Cost -->
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
@@ -43,27 +43,28 @@
 
                     <!-- Casting Cost -->
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Cost:</TextBlock>
-                    <TextBox Grid.Column="1"></TextBox>
-                    
+                    <TextBox Name="tb_CardCost" Grid.Column="1"></TextBox>
+
                     <!-- CMC -->
                     <TextBlock Grid.Column="3" Style="{StaticResource tbl_Label}">CMC:</TextBlock>
-                    <TextBox Grid.Column="4" IsEnabled="True" ></TextBox>
+                    <TextBox Name="tb_CardConvertedManaCost" Grid.Column="4" IsEnabled="True" ></TextBox>
                     <TextBlock Grid.Column="5" Style="{StaticResource tbl_Label}">Infer CMC?</TextBlock>
-                    <CheckBox Grid.Column="6" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
+                    <CheckBox Name="cb_CardInferCMC" Grid.Column="6" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
                 </Grid>
 
                 <!-- Card Type -->
                 <Grid Margin="0 0 0 5" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="15*" />
-                        <ColumnDefinition Width="45*" />
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="35*" />
+                        <ColumnDefinition Width="55*" />
+                        <ColumnDefinition Width="165*" />
+                        <ColumnDefinition Width="18*" />
+                        <ColumnDefinition Width="124*" />
+                        <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Type:</TextBlock>
-                    <TextBox Grid.Column="1" />
-                    <ComboBox Grid.Column="3" SelectedIndex="0">
+                    <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" Grid.ColumnSpan="2" Margin="0,3,164,3">Type:</TextBlock>
+                    <TextBox Name="tb_CardType" Grid.Column="1" />
+                    <ComboBox Name="cm_CardType" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2">
                         <ComboBoxItem>Creature</ComboBoxItem>
                         <ComboBoxItem>Instant</ComboBoxItem>
                         <ComboBoxItem>Sorcery</ComboBoxItem>
@@ -71,7 +72,7 @@
                         <ComboBoxItem>Enchantment</ComboBoxItem>
                     </ComboBox>
                 </Grid>
-                
+
                 <!-- Card Subtype -->
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
@@ -80,9 +81,9 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Subtype:</TextBlock>
-                    <TextBox Grid.Column="1"></TextBox>
+                    <TextBox Name="tb_CardSubtype" Grid.Column="1"></TextBox>
                 </Grid>
-                
+
                 <!-- Card Text -->
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
@@ -97,14 +98,14 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBox AcceptsReturn="True" Grid.Row="0" Height="200"></TextBox>
+                        <TextBox Name="tb_CardText" AcceptsReturn="True" Grid.Row="0" Height="200"></TextBox>
                         <TextBlock Grid.Row="1" Style="{StaticResource tbl_Default}" >Use &lt;f>TEXT&lt;/f> for flavor text and italics.</TextBlock>
                     </Grid>
                 </Grid>
-                
+
                 <!-- Font Size -->
                 <!-- TODO: Implement -->
-                
+
                 <!-- Power / Toughness / Loyalty -->
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
@@ -119,13 +120,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">P / T:</TextBlock>
-                    <TextBox Grid.Column="1"/>
+                    <TextBox Name="tb_CardPower" Grid.Column="1"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource tbl_Default}">/</TextBlock>
-                    <TextBox Grid.Column="3"/>
+                    <TextBox Name="tb_CardToughness" Grid.Column="3"/>
                     <TextBlock Grid.Column="4" Style="{StaticResource tbl_Label}">Loyalty:</TextBlock>
-                    <TextBox Grid.Column="5"/>
+                    <TextBox Name="tb_CardLoyalty" Grid.Column="5"/>
                     <TextBlock Grid.Column="6" Style="{StaticResource tbl_Label}">Rarity:</TextBlock>
-                    <ComboBox Grid.Column="7" SelectedIndex="0">
+                    <ComboBox Name="cm_CardRarity" Grid.Column="7" SelectedIndex="0">
                         <ComboBoxItem>C</ComboBoxItem>
                         <ComboBoxItem>U</ComboBoxItem>
                         <ComboBoxItem>R</ComboBoxItem>
@@ -161,7 +162,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Color:</TextBlock>
-                    <ComboBox Grid.Column="1" SelectedIndex="0">
+                    <ComboBox Name="cm_CardColor" Grid.Column="1" SelectedIndex="0">
                         <ComboBoxItem>Colorless</ComboBoxItem>
                         <ComboBoxItem>White</ComboBoxItem>
                         <ComboBoxItem>Blue</ComboBoxItem>
@@ -173,11 +174,11 @@
 
                     <WrapPanel Grid.Column="3" VerticalAlignment="Center">
                         <TextBlock Style="{StaticResource tbl_Label}">Infer Color?</TextBlock>
-                        <CheckBox HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox Name="tb_CardInferColor" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
                     </WrapPanel>
 
                 </Grid>
-                
+
                 <!-- Reset and Save Buttons -->
                 <Grid Margin="12 17 12 0">
                     <Grid.ColumnDefinitions>
@@ -185,11 +186,11 @@
                         <ColumnDefinition Width="5" />
                         <ColumnDefinition Width="45*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="5" />
-                        <RowDefinition Height="Auto" />                        
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Button Name="b_Help" Click="b_Help_Click" Content="Help" Grid.Column="0" Grid.Row="0" />

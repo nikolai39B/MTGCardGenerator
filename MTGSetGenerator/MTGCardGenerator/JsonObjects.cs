@@ -31,5 +31,13 @@ namespace MTGSetGenerator
     {
         [DataMember]
         internal string name;
+        internal string cost;
+        internal int cmc;
+        internal string type;
+        internal string subtype;
+        internal string text;
+        internal int power;
+        internal int toughness;
+        internal char rarity;
     }
 }
