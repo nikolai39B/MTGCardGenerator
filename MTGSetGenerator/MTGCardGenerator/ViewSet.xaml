@@ -8,7 +8,27 @@
     <StackPanel Margin="10">
         <!-- Page Title -->
         <TextBlock Margin="0 0 0 5" Style="{StaticResource tbl_Header}">View / Edit Set</TextBlock>
-        
+
+        <Grid Margin="0 0 0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="25*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Name="b_SwitchSet" Content="Switch Set" Grid.Column="0" Margin="0 0 2.5 0" />
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Image Width="20px" Source="{StaticResource img_DarksignIcon}" />
+                <TextBlock Name="tbl_SetName" Margin="5 0 0 0" Style="{StaticResource tbl_Default}" >Dark Souls II: Scholar of the First Set</TextBlock>
+            </StackPanel>
+            <Button Name="b_AddCard" Content="Add Card" Grid.Column="2" Margin="2.5 0 0 0" />
+        </Grid>
+
+        <ScrollViewer Height="314" Margin="0 0 0 10">
+            
+        </ScrollViewer>
+
         <Grid Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
@@ -17,10 +37,10 @@
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
 
-            <Button Name="b_AddCard" Content="Add Card" Width="125" />
-            <Button Name="b_ViewDetails" Content="d" Width="125" />
-            <Button Name="b_Back" Content="Add Card" Width="125" />
-            <Button Name="b_GetSheet" Content="Add Card" Width="125" />
+            <Button Name="b_SetOptions" Content="Set Options" Grid.Column="0" Margin="0 0 2.5 0" />
+            <Button Name="b_SetStatistics" Content="Set Statistics" Grid.Column="1" Margin="2.5 0 2.5 0" />
+            <Button Name="b_GetCardSheet" Content="Get Card Sheet" Grid.Column="2" Margin="2.5 0 2.5 0" />
+            <Button Name="b_Back" Click="b_Back_Click" Content="Back" Grid.Column="3" Margin="2.5 0 0 0" />
         </Grid>
     </StackPanel>
 </UserControl>

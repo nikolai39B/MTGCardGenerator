@@ -40,11 +40,15 @@ namespace MTGSetGenerator
         {
             Window addNewSetWindow = new AddNewSetWindow();
             bool? result = addNewSetWindow.ShowDialog();
+            if (result == true)
+            {
+                Window.GetWindow(this).Content = new ViewSet();
+            }
         }
 
         private void b_EditExistingSet_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Content = new GenerateCard();
+            Window.GetWindow(this).Content = new ViewSet();
         }
 
         private void b_Options_Click(object sender, RoutedEventArgs e)
@@ -54,7 +58,8 @@ namespace MTGSetGenerator
 
         private void b_Help_Click(object sender, RoutedEventArgs e)
         {
-
+            // NOTE: temporary for debugging purposes
+            Window.GetWindow(this).Content = new GenerateCard(this);
         }
 
         private void b_Exit_Click(object sender, RoutedEventArgs e)
