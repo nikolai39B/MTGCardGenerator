@@ -11,32 +11,32 @@ namespace MTGSetGenerator
 {
 
     [DataContract]
-    internal class JsonCollection
+    public class JsonCollection
     {
         [DataMember]
-        internal List<JsonSet> sets = new List<JsonSet>();
+        public List<JsonSet> sets = new List<JsonSet>();
 
         [DataMember]
-        internal List<JsonCard> cards = new List<JsonCard>();
+        public List<JsonCard> cards = new List<JsonCard>();
     }
 
     [DataContract]
-    internal class JsonSet
+    public class JsonSet
     {
         [DataMember]
-        internal List<int> cardIds = new List<int>();
+        public List<int> cardIds = new List<int>();
 
         [DataMember]
-        internal string setName;
+        public string setName;
 
         [DataMember]
-        internal string setDetails;
+        public string setDetails;
 
         [DataMember]
-        internal string setIconPath;
+        public string setIconPath;
 
         private BitmapImage setIcon = null;
-        internal BitmapImage SetIcon
+        public BitmapImage SetIcon
         {
             get
             {
@@ -54,9 +54,9 @@ namespace MTGSetGenerator
     }
 
     [DataContract]
-    internal class JsonCard
+    public class JsonCard
     {
         [DataMember]
-        internal string name;
+        public string name;
     }
 }

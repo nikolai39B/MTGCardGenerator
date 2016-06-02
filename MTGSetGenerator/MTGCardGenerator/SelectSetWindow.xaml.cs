@@ -23,5 +23,20 @@ namespace MTGSetGenerator
         {
             InitializeComponent();
         }
+
+        private void b_SelectSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_AddNewSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void b_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

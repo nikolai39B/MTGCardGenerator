@@ -38,7 +38,7 @@ namespace MTGSetGenerator
         //-----------------//
 
         private static string jsonCollectionFilePath;
-        public static JsonCollection Collection { get; set; }
+        private static JsonCollection Collection { get; set; }
         
         /// <summary>
         /// Initialize the internal json memory objects.
@@ -124,6 +124,9 @@ namespace MTGSetGenerator
         //-----------------------//
         // Collection Management //
         //-----------------------//
+
+        public static List<JsonSet> Sets { get { return Collection.sets; } }
+        public static List<JsonCard> Cards { get { return Collection.cards; } }
 
         /// <summary>
         /// Add a new json card to the card collection.

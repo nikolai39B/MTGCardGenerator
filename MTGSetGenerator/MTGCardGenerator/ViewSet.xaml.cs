@@ -20,22 +20,52 @@ namespace MTGSetGenerator
     /// </summary>
     public partial class ViewSet : UserControl
     {
-        public ViewSet()
+        /// <summary>
+        /// Initializes a new ViewSet user control.
+        /// </summary>
+        /// <param name="setToView">The set to view.</param>
+        public ViewSet(JsonSet setToView)
         {
             InitializeComponent();
+
+            Set = setToView;
+            ConfigureUIForSet();
         }
 
-        //-------------//
-        // Switch Sets //
-        //-------------//
+
+        //------//
+        // Sets //
+        //------//
+
+        public JsonSet Set { get; private set; }
 
         /// <summary>
         /// Configures all UI elements for the given set, or for no set if the set is null.
         /// </summary>
-        /// <param name="set">The set to configure for, or null for no set.</param>
-        private void ConfigureUIForSet(JsonSet set)
+        private void ConfigureUIForSet()
         {
+            // If the set is null, disable everything that the user shouldn't use
+            if (Set == null)
+            {
+                sp_SetNameAndIcon.Visibility = System.Windows.Visibility.Hidden;
 
+                b_AddCard.IsEnabled = false;
+
+                tb_SearchCardName.IsEnabled = false;
+                b_Search.IsEnabled = false;
+                b_AdvancedSearch.IsEnabled = false;
+
+                b_SetOptions.IsEnabled = false;
+                b_SetStatistics.IsEnabled = false;
+                b_GetCardSheet.IsEnabled = false;
+            }
+            
+            // Otherwise, configure the UI for the set
+            else
+            {
+                tbl_SetName.Text = Set.setName;
+                img_SetIcon.Source = Set.SetIcon;
+            }
         }
 
 

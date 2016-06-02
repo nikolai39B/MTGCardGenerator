@@ -16,8 +16,9 @@
                 <ColumnDefinition Width="33*" />
                 <ColumnDefinition Width="33*" />
             </Grid.ColumnDefinitions>
-            <Button Name="b_AddNewSet" Click="b_AddSet_Click" Content="Add New Set" Grid.Column="1" Width="125" />
-            <Button Name="b_Cancel" Click="b_Cancel_Click" Content="Cancel" Grid.Column="2" Width="125" />
+            <Button Name="b_SelectSet" Click="b_SelectSet_Click" Content="Select Set" Grid.Column="0" Width="125" />
+            <Button Name="b_AddNewSet" Click="b_AddNewSet_Click"  Content="Add New Set" Grid.Column="1" Width="125" />
+            <Button Name="b_Cancel" Click="b_Cancel_Click"  Content="Cancel" Grid.Column="2" Width="125" />
         </Grid>
 
         <StackPanel VerticalAlignment="Center">

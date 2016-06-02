@@ -72,6 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddNewSet.xaml.cs">
+      <DependentUpon>AddNewSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddNewSetWindow.xaml.cs">
       <DependentUpon>AddNewSetWindow.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
     <Compile Include="ViewSet.xaml.cs">
       <DependentUpon>ViewSet.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddNewSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
