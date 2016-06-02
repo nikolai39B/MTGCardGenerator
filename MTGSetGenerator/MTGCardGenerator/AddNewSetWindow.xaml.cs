@@ -24,7 +24,7 @@ namespace MTGSetGenerator
             InitializeComponent();
         }
 
-        // TODO: improve dialog
+        ErrorWindow issuesWindow = null;
 
         //----------------//
         // Event Handlers //
@@ -32,6 +32,31 @@ namespace MTGSetGenerator
 
         private void b_AddSet_Click(object sender, RoutedEventArgs e)
         {
+            // Close any open issues window
+            if (issuesWindow != null)
+            {
+                issuesWindow.Close();
+            }
+
+            string errorMessage = "";
+
+            // Check the set name
+            string setName = tb_SetName.Text;
+            if (setName == "" || setName == null)
+            {
+                errorMessage += "Please supply a set name.\n";
+            }
+
+            // If there's errors, display them and return
+            if (errorMessage != "")
+            {
+                issuesWindow = new ErrorWindow(errorMessage.Trim());
+                issuesWindow.Show();
+                return;
+            }
+            
+            // Otherwise, create the set
+            // TODO: add the set
             DialogResult = true;
         }
 
