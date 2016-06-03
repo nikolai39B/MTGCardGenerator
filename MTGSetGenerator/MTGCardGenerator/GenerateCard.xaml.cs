@@ -29,7 +29,6 @@ namespace MTGSetGenerator
         /// <param name="currentSet">The current set for this card.</param>
         public GenerateCard(ContentControl controlToReturnTo, JsonSet currentSet)
         {
-
             InitializeComponent();
 
             this.controlToReturnTo = controlToReturnTo;
@@ -249,6 +248,20 @@ namespace MTGSetGenerator
         // Event Handlers //
         //----------------//
 
+        private void cmb_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Make sure these have been initialized
+            if (tb_Power != null && tb_Toughness != null && tb_Loyalty != null)
+            {
+                RefreshPowerToughnessAndLoyalty();
+            }
+        }
+
+        private void b_Browse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void b_Help_Click(object sender, RoutedEventArgs e)
         {
             
@@ -270,8 +283,10 @@ namespace MTGSetGenerator
 
         private void b_Save_Click(object sender, RoutedEventArgs e)
         {
+            // TODO move this logic into a separate function
+            // TODO check all fields before creating a new json card
 
-            //Make new card
+            // Make new card
             JsonCard newCard = new JsonCard();
             List<string> invalidLog = new List<string>();
 
@@ -292,7 +307,7 @@ namespace MTGSetGenerator
             }
             else
             {
-                //Add card to collection manager
+                // Add card to collection manager
                 CardCollectionManager.AddCard(newCard);
             }
         }
@@ -341,14 +356,5 @@ namespace MTGSetGenerator
 
         private Dictionary<ComboBoxItem, JsonCard.Color> comboBoxItemToColor;
         private Dictionary<JsonCard.Color, ComboBoxItem> colorToComboBoxItem;
-
-        //----------------//
-        // Event Handlers //
-        //----------------//
-
-        private void b_Browse_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -64,7 +64,7 @@
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" Grid.ColumnSpan="2" Margin="0,3,164,3">Type:</TextBlock>
                     <TextBox Name="tb_Pretype" Grid.Column="1" />
-                    <ComboBox Name="cmb_Type" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2">
+                    <ComboBox Name="cmb_Type" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="cmb_Type_SelectionChanged">
                         <ComboBoxItem Name="cbi_Creature">Creature</ComboBoxItem>
                         <ComboBoxItem Name="cbi_Instant">Instant</ComboBoxItem>
                         <ComboBoxItem Name="cbi_Sorcery">Sorcery</ComboBoxItem>
