@@ -26,7 +26,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
-                    <TextBox Name="tb_CardName" Grid.Column="1"></TextBox>
+                    <TextBox Name="tb_Name" Grid.Column="1">Test Name</TextBox>
                 </Grid>
 
                 <!-- Casting Cost -->
@@ -43,13 +43,13 @@
 
                     <!-- Casting Cost -->
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Cost:</TextBlock>
-                    <TextBox Name="tb_CardCost" Grid.Column="1"></TextBox>
+                    <TextBox Name="tb_Cost" Grid.Column="1"></TextBox>
 
                     <!-- CMC -->
                     <TextBlock Grid.Column="3" Style="{StaticResource tbl_Label}">CMC:</TextBlock>
-                    <TextBox Name="tb_CardConvertedManaCost" Grid.Column="4" IsEnabled="True" ></TextBox>
+                    <TextBox Name="tb_Cmc" Grid.Column="4" IsEnabled="True" ></TextBox>
                     <TextBlock Grid.Column="5" Style="{StaticResource tbl_Label}">Infer CMC?</TextBlock>
-                    <CheckBox Name="cb_CardInferCMC" Grid.Column="6" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
+                    <CheckBox Name="cb_InferCMC" Grid.Column="6" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
                 </Grid>
 
                 <!-- Card Type -->
@@ -63,13 +63,15 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" Grid.ColumnSpan="2" Margin="0,3,164,3">Type:</TextBlock>
-                    <TextBox Name="tb_CardType" Grid.Column="1" />
-                    <ComboBox Name="cm_CardType" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2">
-                        <ComboBoxItem>Creature</ComboBoxItem>
-                        <ComboBoxItem>Instant</ComboBoxItem>
-                        <ComboBoxItem>Sorcery</ComboBoxItem>
-                        <ComboBoxItem>Planeswalker</ComboBoxItem>
-                        <ComboBoxItem>Enchantment</ComboBoxItem>
+                    <TextBox Name="tb_Pretype" Grid.Column="1" />
+                    <ComboBox Name="cmb_Type" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2">
+                        <ComboBoxItem Name="cbi_Creature">Creature</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Instant">Instant</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Sorcery">Sorcery</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Planeswalker">Planeswalker</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Enchantment">Enchantment</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Artifact">Artifact</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Land">Land</ComboBoxItem>
                     </ComboBox>
                 </Grid>
 
@@ -81,7 +83,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Subtype:</TextBlock>
-                    <TextBox Name="tb_CardSubtype" Grid.Column="1"></TextBox>
+                    <TextBox Name="tb_Subtype" Grid.Column="1"></TextBox>
                 </Grid>
 
                 <!-- Card Text -->
@@ -98,7 +100,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBox Name="tb_CardText" AcceptsReturn="True" Grid.Row="0" Height="200"></TextBox>
+                        <TextBox Name="tb_Text" AcceptsReturn="True" Grid.Row="0" Height="200"></TextBox>
                         <TextBlock Grid.Row="1" Style="{StaticResource tbl_Default}" >Use &lt;f>TEXT&lt;/f> for flavor text and italics.</TextBlock>
                     </Grid>
                 </Grid>
@@ -120,13 +122,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">P / T:</TextBlock>
-                    <TextBox Name="tb_CardPower" Grid.Column="1"/>
+                    <TextBox Name="tb_Power" Grid.Column="1"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource tbl_Default}">/</TextBlock>
-                    <TextBox Name="tb_CardToughness" Grid.Column="3"/>
+                    <TextBox Name="tb_Toughness" Grid.Column="3"/>
                     <TextBlock Grid.Column="4" Style="{StaticResource tbl_Label}">Loyalty:</TextBlock>
-                    <TextBox Name="tb_CardLoyalty" Grid.Column="5"/>
+                    <TextBox Name="tb_Loyalty" Grid.Column="5"/>
                     <TextBlock Grid.Column="6" Style="{StaticResource tbl_Label}">Rarity:</TextBlock>
-                    <ComboBox Name="cm_CardRarity" Grid.Column="7" SelectedIndex="0">
+                    <ComboBox Name="cmb_Rarity" Grid.Column="7" SelectedIndex="0">
                         <ComboBoxItem Name="cbi_Common">C</ComboBoxItem>
                         <ComboBoxItem Name="cbi_Uncommon">U</ComboBoxItem>
                         <ComboBoxItem Name="cbi_Rare">R</ComboBoxItem>
@@ -144,8 +146,8 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Image:</TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource tbl_Default}">dancer_of_the_boreal_valley.png</TextBlock>
-                    <Button Content="Browse..." Grid.Column="3" />
+                    <TextBlock Name="tbl_ImageFilename" Grid.Column="1" Style="{StaticResource tbl_Default}">dancer_of_the_boreal_valley.png</TextBlock>
+                    <Button Name="b_Browse" Click="b_Browse_Click" Content="Browse..." Grid.Column="3" />
                 </Grid>
             </StackPanel>
 
@@ -162,7 +164,7 @@
 
                     <!-- Card Type and Set Icon -->
                     <TextBlock Name="tbl_CardType" Canvas.Left="18" Canvas.Top="159" Style="{StaticResource tbl_MtgCardSmallTitle}" Text="Legendary Creature - Knight" />
-                    <Image Name="img_SetIcon" Canvas.Left="170" Canvas.Top="159" Source="{StaticResource img_SetIconBackground}" MaxHeight="11" MaxWidth="11"/>
+                    <Image Name="img_CardSetIcon" Canvas.Left="170" Canvas.Top="159" Source="{StaticResource img_SetIconBackground}" MaxHeight="11" MaxWidth="11"/>
 
                     <!-- Card Text -->
                     <TextBlock Name="tbl_CardText" Canvas.Left="19" Canvas.Top="176" Style="{StaticResource tbl_MtgCardText}" TextWrapping="Wrap" Width="161" Height="75">
@@ -180,19 +182,19 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Color:</TextBlock>
-                    <ComboBox Name="cm_CardColor" Grid.Column="1" SelectedIndex="0">
-                        <ComboBoxItem>Colorless</ComboBoxItem>
-                        <ComboBoxItem>White</ComboBoxItem>
-                        <ComboBoxItem>Blue</ComboBoxItem>
-                        <ComboBoxItem>Black</ComboBoxItem>
-                        <ComboBoxItem>Red</ComboBoxItem>
-                        <ComboBoxItem>Green</ComboBoxItem>
+                    <ComboBox Name="cmb_Color" Grid.Column="1" SelectedIndex="0">
+                        <ComboBoxItem Name="cbi_Colorless">Colorless</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_White">White</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Blue">Blue</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Black">Black</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Red">Red</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Green">Green</ComboBoxItem>
                         <ComboBoxItem>Gold</ComboBoxItem>
                     </ComboBox>
 
                     <WrapPanel Grid.Column="3" VerticalAlignment="Center">
                         <TextBlock Style="{StaticResource tbl_Label}">Infer Color?</TextBlock>
-                        <CheckBox Name="tb_CardInferColor" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox Name="cb_InferColor" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
                     </WrapPanel>
 
                 </Grid>

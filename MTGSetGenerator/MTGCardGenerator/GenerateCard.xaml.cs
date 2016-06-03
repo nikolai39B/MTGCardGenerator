@@ -34,9 +34,17 @@ namespace MTGSetGenerator
 
             this.controlToReturnTo = controlToReturnTo;
             this.currentSet = currentSet;
-            img_SetIcon.Source = currentSet.Icon;
-            CropCardImage();
 
+            InitConversionDictionaries();
+
+            RestoreUIToDefault();
+        }
+
+        /// <summary>
+        /// Initializes the conversion dictionaries.
+        /// </summary>
+        private void InitConversionDictionaries()
+        {
             comboBoxItemToRarity = new Dictionary<ComboBoxItem, JsonCard.Rarity>()
             {
                 { cbi_Common , JsonCard.Rarity.COMMON },
@@ -52,6 +60,38 @@ namespace MTGSetGenerator
                 { JsonCard.Rarity.RARE, cbi_Rare },
                 { JsonCard.Rarity.MYTHIC, cbi_Mythic }
             };
+
+            // TODO finish implementing conversion dictionaries
+            comboBoxItemToType = new Dictionary<ComboBoxItem, JsonCard.Type>()
+            {
+                { cbi_Creature, JsonCard.Type.CREATURE },
+
+            };
+
+            typeToComboBoxItem = new Dictionary<JsonCard.Type, ComboBoxItem>()
+            {
+            
+            };
+
+            comboBoxItemToString = new Dictionary<ComboBoxItem, string>()
+            {
+
+            };
+
+            stringToComboBoxItem = new Dictionary<string, ComboBoxItem>()
+            {
+
+            };
+
+            comboBoxItemToColor = new Dictionary<ComboBoxItem, JsonCard.Color>()
+            {
+
+            };
+
+            colorToComboBoxItem = new Dictionary<JsonCard.Color, ComboBoxItem>()
+            {
+
+            };
         }
 
 
@@ -63,6 +103,89 @@ namespace MTGSetGenerator
         private JsonSet currentSet;
 
 
+        //---------------//
+        // UI Management //
+        //---------------//
+
+        /// <summary>
+        /// Resets all UI elements to their default values.
+        /// </summary>
+        private void RestoreUIToDefault()
+        {
+            tb_Name.Text = "";
+            
+            tb_Cost.Text = "";
+            tb_Cmc.Text = "";
+            tb_Cmc.IsEnabled = false;
+            cb_InferCMC.IsChecked = true;
+
+            tb_Pretype.Text = "";
+            cmb_Type.SelectedIndex = 0;
+            tb_Subtype.Text = "";
+
+            cmb_Rarity.SelectedIndex = 0;
+
+            tbl_ImageFilename.Text = "";
+
+            cmb_Color.SelectedIndex = 0;
+            cmb_Color.IsEnabled = false;
+
+            RefreshPowerToughnessAndLoyalty();
+            InferCmc();
+            InferColor();
+
+            RefreshCardImage();
+        }
+
+
+        /// <summary>
+        /// Refreshes and enables the power, toughness, and loyalty text boxes as necessary.
+        /// </summary>
+        private void RefreshPowerToughnessAndLoyalty()
+        {
+            // Everything is on by default
+            tb_Power.IsEnabled = true;
+            tb_Toughness.IsEnabled = true;
+            tb_Loyalty.IsEnabled = true;
+
+            // If we're not a creature, turn off P/T
+            if (cmb_Type.SelectedItem != cbi_Creature)
+            {
+                tb_Power.Text = "";
+                tb_Toughness.Text = "";
+                tb_Power.IsEnabled = false;
+                tb_Toughness.IsEnabled = false;
+            }
+
+            // If we're not a planeswalker, turn off loyalty
+            if (cmb_Type.SelectedItem != cbi_Planeswalker)
+            {
+                tb_Loyalty.Text = "";
+                tb_Loyalty.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Infers the card's cmc and sets the value on the UI.
+        /// </summary>
+        /// <returns></returns>
+        public int InferCmc()
+        {
+            // TODO implement InferCmc()
+            return 0;
+        }
+
+        /// <summary>
+        /// Infers the card's color and sets the value on the UI.
+        /// </summary>
+        /// <returns></returns>
+        public ComboBoxItem InferColor()
+        {
+            // TODO implement InferColor()
+            return cbi_Colorless;
+        }
+
+
         //------------------//
         // Image Management //
         //------------------//
@@ -70,7 +193,20 @@ namespace MTGSetGenerator
         private const int cardImageHeight = 125;
         private const int cardImageWidth = 170;
 
-        public void CropCardImage()
+        /// <summary>
+        /// Refreshes all elements that compose the card image.
+        /// </summary>
+        private void RefreshCardImage()
+        {
+            // TODO finish implementing RefreshCardImage()
+            img_CardSetIcon.Source = currentSet.Icon;
+            CropCardImage();
+        }
+
+        /// <summary>
+        /// Crops the current card image to fit neatly in the allocated space.
+        /// </summary>
+        private void CropCardImage()
         {
             BitmapImage image = FindResource("img_Raime") as BitmapImage;
             
@@ -102,6 +238,13 @@ namespace MTGSetGenerator
             img_CardPicture.Source = newImage;
         }
 
+
+        private void RefreshCardType()
+        {
+
+        }
+
+
         //----------------//
         // Event Handlers //
         //----------------//
@@ -132,14 +275,14 @@ namespace MTGSetGenerator
             JsonCard newCard = new JsonCard();
             List<string> invalidLog = new List<string>();
 
-            newCard.name = tb_CardName.Text;
+            newCard.name = tb_Name.Text;
 
-            newCard.power = tb_CardPower.Text;
-            newCard.toughness = tb_CardToughness.Text;
+            newCard.power = tb_Power.Text;
+            newCard.toughness = tb_Toughness.Text;
 
-            newCard.rarity = comboBoxItemToRarity[cm_CardRarity.SelectedItem as ComboBoxItem];
+            newCard.rarity = comboBoxItemToRarity[cmb_Rarity.SelectedItem as ComboBoxItem];
 
-            newCard.subtype = tb_CardSubtype.Text;
+            newCard.subtype = tb_Subtype.Text;
 
             if (invalidLog.Count() > 0)
             {
@@ -183,11 +326,29 @@ namespace MTGSetGenerator
         }
 
 
-        //------------------------------//
-        // Enum Conversion Dictionaries //
-        //------------------------------//
-        private Dictionary<ComboBoxItem, JsonCard.Rarity> comboBoxItemToRarity;
+        //-------------------------//
+        // Conversion Dictionaries //
+        //-------------------------//
 
+        private Dictionary<ComboBoxItem, JsonCard.Rarity> comboBoxItemToRarity;
         private Dictionary<JsonCard.Rarity, ComboBoxItem> rarityToComboBoxItem;
+
+        private Dictionary<ComboBoxItem, JsonCard.Type> comboBoxItemToType;
+        private Dictionary<JsonCard.Type, ComboBoxItem> typeToComboBoxItem;
+
+        private Dictionary<ComboBoxItem, string> comboBoxItemToString;
+        private Dictionary<string, ComboBoxItem> stringToComboBoxItem;
+
+        private Dictionary<ComboBoxItem, JsonCard.Color> comboBoxItemToColor;
+        private Dictionary<JsonCard.Color, ComboBoxItem> colorToComboBoxItem;
+
+        //----------------//
+        // Event Handlers //
+        //----------------//
+
+        private void b_Browse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

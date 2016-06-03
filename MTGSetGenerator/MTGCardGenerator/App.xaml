@@ -41,18 +41,19 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Padding" Value="0 0 4 0" />
         </Style>
-        
-        <Style x:Key="tbl_MtgCardTitle" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontFamily" Value="fonts/#Beleren" />
+
+        <Style x:Key="tbl_MtgCardText" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="fonts/#MPlantin" />
+            <Setter Property="FontSize" Value="7" />
+        </Style>
+
+        <Style x:Key="tbl_MtgCardTitle" BasedOn="{StaticResource tbl_MtgCardText}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="10" />
         </Style>
 
         <Style x:Key="tbl_MtgCardSmallTitle" BasedOn="{StaticResource tbl_MtgCardTitle}" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="9" />
-        </Style>
-
-        <Style x:Key="tbl_MtgCardText" BasedOn="{StaticResource tbl_MtgCardTitle}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="7" />
         </Style>
 
         <!-- Images -->

@@ -81,7 +81,13 @@ namespace MTGSetGenerator
         internal int cmc;
 
         [DataMember]
-        internal string type;
+        internal bool inferCmc;
+
+        [DataMember]
+        internal string pretype;
+
+        [DataMember]
+        internal Type type;
 
         [DataMember]
         internal string subtype;
@@ -96,7 +102,27 @@ namespace MTGSetGenerator
         internal string toughness;
 
         [DataMember]
+        internal string loyalty;
+
+        [DataMember]
         internal Rarity rarity;
+
+        [DataMember]
+        internal Color color;
+
+        [DataMember]
+        internal bool inferColor;
+
+        internal enum Type
+        {
+            CREATURE,
+            INSTANT,
+            SORCERY,
+            PLANESWALKER,
+            ENCHANTMENT,
+            ARTIFACT,
+            LAND
+        }
 
         internal enum Rarity 
         { 
@@ -104,6 +130,16 @@ namespace MTGSetGenerator
             UNCOMMON,
             RARE,
             MYTHIC
+        }
+
+        internal enum Color
+        {
+            COLORLESS,
+            WHITE,
+            BLUE,
+            BLACK,
+            RED,
+            GREEN
         }
     }
 }
