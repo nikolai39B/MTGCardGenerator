@@ -52,6 +52,7 @@ namespace MTGSetGenerator
                     {
                         ErrorWindow windows = new ErrorWindow(string.Format(
                             "Set {0} has no icon file.", name));
+                        windows.ShowDialog();
                         icon = null;
                     }
                 }

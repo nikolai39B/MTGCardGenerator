@@ -62,6 +62,8 @@
                 <Image Grid.Column="2" Width="22px" Source="{StaticResource img_SetIconBackground}" />
                 <Image Name="img_SetIcon" Grid.Column="2" MaxHeight="20px" MaxWidth="20px" Source="{StaticResource img_DarksignIcon}" Visibility="Hidden" />
                 <Button Name="b_Browse" Click="b_Browse_Click" Content="Browse..." Grid.Column="3" HorizontalAlignment="Right" Width="125" />
+
+                <!-- TODO add option to use existing / default or browse for icon -->
             </Grid>
         </StackPanel>
     </DockPanel>

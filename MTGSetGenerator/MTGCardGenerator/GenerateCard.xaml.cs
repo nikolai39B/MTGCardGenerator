@@ -33,18 +33,18 @@ namespace MTGSetGenerator
 
             comboBoxItemToRarity = new Dictionary<ComboBoxItem, JsonCard.Rarity>()
             {
-                {cbi_Common , JsonCard.Rarity.COMMON},
-                {cbi_Uncommon, JsonCard.Rarity.UNCOMMON},
-                {cbi_Rare, JsonCard.Rarity.RARE},
-                {cbi_Mythic, JsonCard.Rarity.MYTHIC}
+                { cbi_Common , JsonCard.Rarity.COMMON },
+                { cbi_Uncommon, JsonCard.Rarity.UNCOMMON },
+                { cbi_Rare, JsonCard.Rarity.RARE },
+                { cbi_Mythic, JsonCard.Rarity.MYTHIC }
             };
 
             rarityToComboBoxItem = new Dictionary<JsonCard.Rarity, ComboBoxItem>()
             {
-                {JsonCard.Rarity.COMMON, cbi_Common},
-                {JsonCard.Rarity.UNCOMMON, cbi_Uncommon},
-                {JsonCard.Rarity.RARE, cbi_Rare},
-                {JsonCard.Rarity.MYTHIC, cbi_Mythic}
+                { JsonCard.Rarity.COMMON, cbi_Common },
+                { JsonCard.Rarity.UNCOMMON, cbi_Uncommon },
+                { JsonCard.Rarity.RARE, cbi_Rare },
+                { JsonCard.Rarity.MYTHIC, cbi_Mythic }
             };
         }
 

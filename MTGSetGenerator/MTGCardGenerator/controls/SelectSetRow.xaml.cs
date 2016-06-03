@@ -29,6 +29,7 @@ namespace MTGSetGenerator
             InitializeComponent();
 
             Set = set;
+            img_SetIcon.Source = set.Icon;
             tbl_SetName.Text = set.name;
         }
 

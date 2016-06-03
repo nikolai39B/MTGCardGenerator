@@ -104,8 +104,6 @@ namespace MTGSetGenerator
                 return;
             }
 
-            // TODO add option to use existing / default or browse
-
             // Otherwise, create the set
             int setId = CardCollectionManager.RequestUniqueSetId();
             JsonSet newSet = new JsonSet()
