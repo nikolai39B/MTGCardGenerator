@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace MTGSetGenerator
 {
@@ -44,8 +46,7 @@ namespace MTGSetGenerator
         /// Initialize the internal json memory objects.
         /// </summary>
         public static void InitializeJsonCollection()
-        {
-            
+        {            
             ReadJsonCollection();
         }
 
@@ -93,7 +94,7 @@ namespace MTGSetGenerator
         }
 
         /// <summary>
-        /// Check all lists in the card collection and turn any null references into empty lists.
+        /// Check all lists in the card collection and turn any null references into empty lists. Also sets the highest set and card id fields.
         /// </summary>
         private static void FinishJsonCollectionPropertyInitialization()
         {
@@ -109,15 +110,21 @@ namespace MTGSetGenerator
                 Collection.sets = new List<JsonSet>();
             }
             
-            // Check the list of card ids for each set
+            // Check the list of card ids for each set, and also set the highest set id field
             foreach (var set in Collection.sets)
             {
                 if (set.cardIds == null)
                 {
                     set.cardIds = new List<int>();
                 }
+                highestSetId = Math.Max(set.id, highestSetId);
             }
 
+            // Set the highest card id field
+            foreach (var card in Collection.cards)
+            {
+                highestCardId = Math.Max(card.id, highestCardId);
+            }
         }
 
 
@@ -127,6 +134,9 @@ namespace MTGSetGenerator
 
         public static List<JsonSet> Sets { get { return Collection.sets; } }
         public static List<JsonCard> Cards { get { return Collection.cards; } }
+
+        private static int highestSetId = -1;
+        private static int highestCardId = -1;
 
         /// <summary>
         /// Add a new json card to the card collection.
@@ -139,6 +149,8 @@ namespace MTGSetGenerator
                 Collection.cards.Add(newCard);
                 WriteJsonCollection();
             }
+
+            highestCardId = Math.Max(newCard.id, highestCardId);
         }
 
         /// <summary>
@@ -165,6 +177,8 @@ namespace MTGSetGenerator
                 Collection.sets.Add(newSet);
                 WriteJsonCollection();
             }
+
+            highestSetId = Math.Max(newSet.id, highestSetId);
         }
 
         /// <summary>
@@ -178,6 +192,72 @@ namespace MTGSetGenerator
                 Collection.sets.Remove(set);
                 WriteJsonCollection();
             }
+        }
+
+        /// <summary>
+        /// Returns a new set id that is not used by any existing set.
+        /// </summary>
+        public static int RequestUniqueSetId()
+        {
+            highestSetId++;
+            return highestSetId;
+        }
+
+        /// <summary>
+        /// Returns a new set id that is not used by any existing set.
+        /// </summary>
+        public static int RequestUniqueCardId()
+        {
+            highestCardId++;
+            return highestCardId;
+        }
+
+
+        //------------------//
+        // Image Management //
+        //------------------//
+
+        /// <summary>
+        /// Gets the full path to the file where the icon of the given set should be stored.
+        /// </summary>
+        /// <param name="setId">The id of the set whose path to return.</param>
+        /// <param name="setName">The name of the set whose path to return.</param>
+        /// <returns>The path to the set icon.</returns>
+        public static string GetPathToSetIcon(int setId, string setName)
+        {
+            return Path.Combine(
+                Directory.GetCurrentDirectory(),
+                string.Format("data/{0}_{1}_icon.png", setId, setName));
+        }
+
+        /// <summary>
+        /// Writes the icon for the given set to './data/SET-ID_SET-NAME_icon.png
+        /// </summary>
+        /// <param name="setId">The id of the set whose icon to write.</param>
+        /// <param name="setName">The name of the set whose icon to write.</param>
+        /// <param name="setIcon">The icon of the set whose icon to write.</param>
+        /// <returns>The full path to the new image file.</returns>
+        public static string WriteSetIconImage(int setId, string setName, BitmapImage setIcon)
+        {
+            // Build the icon path
+            string iconPath = GetPathToSetIcon(setId, setName);
+
+            // Make sure we have an icon to save
+            if (setIcon == null)
+            {
+                throw new InvalidOperationException(string.Format(
+                    "Cannot write icon for set {0}; set has no icon.", setName));
+            }
+
+            // Encode and save the image
+            PngBitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(setIcon));
+            using (var stream = new FileStream(iconPath, FileMode.Create))
+            {
+                encoder.Save(stream);
+            }
+
+            return iconPath;
         }
     }
 }

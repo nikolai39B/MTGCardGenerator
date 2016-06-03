@@ -104,16 +104,20 @@ namespace MTGSetGenerator
                 return;
             }
 
-            // TODO save the set icon image to a defined location in case the user changes the source image
-            
+            // TODO add option to use existing / default or browse
+
             // Otherwise, create the set
+            int setId = CardCollectionManager.RequestUniqueSetId();
             JsonSet newSet = new JsonSet()
             {
+                id = setId,
                 name = tb_SetName.Text,
-                details = tb_SetDetails.Text,
-                iconPath = setIconFilePath
+                details = tb_SetDetails.Text
             };
             CardCollectionManager.AddSet(newSet);
+
+            // Save the set icon            
+            CardCollectionManager.WriteSetIconImage(newSet.id, newSet.name, new BitmapImage(new Uri(setIconFilePath)));
 
             Window.GetWindow(this).Content = new ViewSet(newSet);
         }

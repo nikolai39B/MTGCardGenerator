@@ -29,14 +29,22 @@ namespace MTGSetGenerator
         public GenerateCard(ContentControl controlToReturnTo)
         {
             this.controlToReturnTo = controlToReturnTo;
-            InitializeComponent();
+            InitializeComponent();            
 
-            intToRarity = new Dictionary<ComboBoxItem,JsonCard.Rarity>()
+            comboBoxItemToRarity = new Dictionary<ComboBoxItem, JsonCard.Rarity>()
             {
-                { cbi_Common, JsonCard.Rarity.COMMON},
-                {1, JsonCard.Rarity.UNCOMMON},
-                {2, JsonCard.Rarity.RARE},
-                {3, JsonCard.Rarity.MYTHIC}
+                {cbi_Common , JsonCard.Rarity.COMMON},
+                {cbi_Uncommon, JsonCard.Rarity.UNCOMMON},
+                {cbi_Rare, JsonCard.Rarity.RARE},
+                {cbi_Mythic, JsonCard.Rarity.MYTHIC}
+            };
+
+            rarityToComboBoxItem = new Dictionary<JsonCard.Rarity, ComboBoxItem>()
+            {
+                {JsonCard.Rarity.COMMON, cbi_Common},
+                {JsonCard.Rarity.UNCOMMON, cbi_Uncommon},
+                {JsonCard.Rarity.RARE, cbi_Rare},
+                {JsonCard.Rarity.MYTHIC, cbi_Mythic}
             };
         }
 
@@ -83,7 +91,7 @@ namespace MTGSetGenerator
             newCard.power = tb_CardPower.Text;
             newCard.toughness = tb_CardToughness.Text;
 
-            newCard.rarity = intToRarity[cm_CardRarity.SelectedIndex];
+            newCard.rarity = comboBoxItemToRarity[cm_CardRarity.SelectedItem as ComboBoxItem];
 
             newCard.subtype = tb_CardSubtype.Text;
 
@@ -111,8 +119,8 @@ namespace MTGSetGenerator
         /// <param name="intText"></param>
         /// <returns></returns>
 
-        // TODO: Add print to 'save' error window
-        // TODO: Load state from previously suspended application
+        // TODO Add print to 'save' error window
+        // TODO Load state from previously suspended application
         private int TextToInt(string intText, List<string> invalidLog)
         {
             int j;
@@ -132,14 +140,8 @@ namespace MTGSetGenerator
         //------------------------------//
         // Enum Conversion Dictionaries //
         //------------------------------//
-        private Dictionary<ComboBoxItem, JsonCard.Rarity> intToRarity;
+        private Dictionary<ComboBoxItem, JsonCard.Rarity> comboBoxItemToRarity;
 
-        private Dictionary<JsonCard.Rarity, int> rarityToInt = new Dictionary<JsonCard.Rarity, int>();
-        {
-            {JsonCard.Rarity.COMMON,   0},
-            {JsonCard.Rarity.UNCOMMON, 1},
-            {JsonCard.Rarity.RARE,     2},
-            {JsonCard.Rarity.MYTHIC,   3}
-        };
+        private Dictionary<JsonCard.Rarity, ComboBoxItem> rarityToComboBoxItem;
     }
 }

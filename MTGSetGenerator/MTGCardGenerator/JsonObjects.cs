@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,7 @@ namespace MTGSetGenerator
         [DataMember]
         public string details;
 
-        [DataMember]
-        public string iconPath;
-
+        public string IconPath { get { return CardCollectionManager.GetPathToSetIcon(id, name); } }
         private BitmapImage icon = null;
         public BitmapImage Icon
         {
@@ -45,7 +44,16 @@ namespace MTGSetGenerator
             {
                 if (icon == null)
                 {
-                    icon = new BitmapImage(new Uri(iconPath));
+                    try
+                    {
+                        icon = new BitmapImage(new Uri(IconPath));
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        ErrorWindow windows = new ErrorWindow(string.Format(
+                            "Set {0} has no icon file.", name));
+                        icon = null;
+                    }
                 }
                 return icon;
             }
