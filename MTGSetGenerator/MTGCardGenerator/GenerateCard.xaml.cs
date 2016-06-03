@@ -30,6 +30,14 @@ namespace MTGSetGenerator
         {
             this.controlToReturnTo = controlToReturnTo;
             InitializeComponent();
+
+            intToRarity = new Dictionary<ComboBoxItem,JsonCard.Rarity>()
+            {
+                { cbi_Common, JsonCard.Rarity.COMMON},
+                {1, JsonCard.Rarity.UNCOMMON},
+                {2, JsonCard.Rarity.RARE},
+                {3, JsonCard.Rarity.MYTHIC}
+            };
         }
 
 
@@ -68,15 +76,28 @@ namespace MTGSetGenerator
 
             //Make new card
             JsonCard newCard = new JsonCard();
-            newCard.name = tb_CardName.Text;
-            newCard.power = (int)tb_CardPower.Text;
-            newCard.toughness = tb_CardToughness;
-            newCard.rarity = cm_CardRarity;
-            newCard.subtype = tb_CardSubtype;
+            List<string> invalidLog = new List<string>();
 
-            //Add card to collection manager
-            CardCollectionManager.AddCard(newCard);
-            
+            newCard.name = tb_CardName.Text;
+
+            newCard.power = tb_CardPower.Text;
+            newCard.toughness = tb_CardToughness.Text;
+
+            newCard.rarity = intToRarity[cm_CardRarity.SelectedIndex];
+
+            newCard.subtype = tb_CardSubtype.Text;
+
+            if (invalidLog.Count() > 0)
+            {
+                MessageBox.Show(string.Format(
+                    "The following errors have occured in the card submission: \n-{0}", String.Join("\n-", invalidLog.ToArray())),
+                    "Card Save Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                //Add card to collection manager
+                CardCollectionManager.AddCard(newCard);
+            }
         }
 
 
@@ -92,13 +113,33 @@ namespace MTGSetGenerator
 
         // TODO: Add print to 'save' error window
         // TODO: Load state from previously suspended application
-        private int TextToInt(string intText)
+        private int TextToInt(string intText, List<string> invalidLog)
         {
             int j;
-            if (Int32.TryParse("-105", out j))
-                Console.WriteLine(j);
+            if (int.TryParse(intText, out j))
+            {
+                return j;
+            }
             else
-                Console.WriteLine("String could not be parsed.");
+            {
+                invalidLog.Add(String.Format("\"{0}\" cannot be converted to an integer", intText));
+                return -1;
+            }
+                
         }
+
+
+        //------------------------------//
+        // Enum Conversion Dictionaries //
+        //------------------------------//
+        private Dictionary<ComboBoxItem, JsonCard.Rarity> intToRarity;
+
+        private Dictionary<JsonCard.Rarity, int> rarityToInt = new Dictionary<JsonCard.Rarity, int>();
+        {
+            {JsonCard.Rarity.COMMON,   0},
+            {JsonCard.Rarity.UNCOMMON, 1},
+            {JsonCard.Rarity.RARE,     2},
+            {JsonCard.Rarity.MYTHIC,   3}
+        };
     }
 }

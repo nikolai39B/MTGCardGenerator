@@ -24,6 +24,9 @@ namespace MTGSetGenerator
     {
         [DataMember]
         internal List<int> cardIds = new List<int>();
+
+        [DataMember]
+        internal string setDetails;
     }
 
     [DataContract]
@@ -31,13 +34,31 @@ namespace MTGSetGenerator
     {
         [DataMember]
         internal string name;
+        [DataMember]
         internal string cost;
+        [DataMember]
         internal int cmc;
+        [DataMember]
         internal string type;
+        [DataMember]
         internal string subtype;
+        [DataMember]
         internal string text;
-        internal int power;
-        internal int toughness;
-        internal char rarity;
+        [DataMember]
+        internal string power;
+        [DataMember]
+        internal string toughness;
+        [DataMember]
+        internal Rarity rarity;
+
+
+        internal enum Rarity 
+        { 
+            COMMON,
+            UNCOMMON,
+            RARE,
+            MYTHIC
+        }
+
     }
 }

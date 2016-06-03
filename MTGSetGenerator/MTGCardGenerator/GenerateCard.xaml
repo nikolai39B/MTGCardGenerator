@@ -127,10 +127,10 @@
                     <TextBox Name="tb_CardLoyalty" Grid.Column="5"/>
                     <TextBlock Grid.Column="6" Style="{StaticResource tbl_Label}">Rarity:</TextBlock>
                     <ComboBox Name="cm_CardRarity" Grid.Column="7" SelectedIndex="0">
-                        <ComboBoxItem>C</ComboBoxItem>
-                        <ComboBoxItem>U</ComboBoxItem>
-                        <ComboBoxItem>R</ComboBoxItem>
-                        <ComboBoxItem>M</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Common">C</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Uncommon">U</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Rare">R</ComboBoxItem>
+                        <ComboBoxItem Name="cbi_Mythic">M</ComboBoxItem>
                     </ComboBox>
                 </Grid>
 
