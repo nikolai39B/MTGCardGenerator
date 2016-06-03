@@ -55,7 +55,7 @@ namespace MTGSetGenerator
         private void b_Help_Click(object sender, RoutedEventArgs e)
         {
             // NOTE: temporary for debugging purposes
-            Window.GetWindow(this).Content = new GenerateCard(this);
+            //Window.GetWindow(this).Content = new GenerateCard(this);
         }
 
         private void b_Exit_Click(object sender, RoutedEventArgs e)

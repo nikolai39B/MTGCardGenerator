@@ -26,10 +26,16 @@ namespace MTGSetGenerator
         /// Instantiates a GenerateCard user control.
         /// </summary>
         /// <param name="controlToReturnTo">The control to return to if the cancel or save buttons are pressed.</param>
-        public GenerateCard(ContentControl controlToReturnTo)
+        /// <param name="currentSet">The current set for this card.</param>
+        public GenerateCard(ContentControl controlToReturnTo, JsonSet currentSet)
         {
+
+            InitializeComponent();
+
             this.controlToReturnTo = controlToReturnTo;
-            InitializeComponent();            
+            this.currentSet = currentSet;
+            img_SetIcon.Source = currentSet.Icon;
+            CropCardImage();
 
             comboBoxItemToRarity = new Dictionary<ComboBoxItem, JsonCard.Rarity>()
             {
@@ -54,7 +60,47 @@ namespace MTGSetGenerator
         //----------------//
 
         private ContentControl controlToReturnTo;
+        private JsonSet currentSet;
 
+
+        //------------------//
+        // Image Management //
+        //------------------//
+
+        private const int cardImageHeight = 125;
+        private const int cardImageWidth = 170;
+
+        public void CropCardImage()
+        {
+            BitmapImage image = FindResource("img_Raime") as BitmapImage;
+            
+            double requiredHeightOverWidth = ((double)cardImageHeight) / cardImageWidth;
+            double currentHeightOverWidth = image.PixelHeight / image.PixelWidth;
+
+            int centerX = image.PixelWidth / 2;
+            int centerY = image.PixelHeight / 2;
+
+            int finalWidth = image.PixelWidth;
+            int finalHeight = image.PixelHeight;
+
+            // Too tall
+            if (currentHeightOverWidth > requiredHeightOverWidth)
+            {
+                finalHeight = (int)Math.Ceiling(finalWidth * requiredHeightOverWidth);
+            }
+
+            // Too wide
+            else if (currentHeightOverWidth < requiredHeightOverWidth)
+            {
+                finalWidth = (int)Math.Ceiling(finalHeight / requiredHeightOverWidth);
+            }
+
+            CroppedBitmap newImage = new CroppedBitmap(image, new Int32Rect(
+                centerX - finalWidth / 2, 
+                centerY - finalHeight / 2, 
+                finalWidth, finalHeight));
+            img_CardPicture.Source = newImage;
+        }
 
         //----------------//
         // Event Handlers //

@@ -156,6 +156,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="fonts\beleren-bold-webfont.ttf" />
+    <Resource Include="fonts\belerensmallcaps-bold-webfont.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -206,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\set_icon_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\raime.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
