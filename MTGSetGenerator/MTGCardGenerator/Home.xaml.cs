@@ -38,17 +38,13 @@ namespace MTGSetGenerator
         //----------------//
         private void b_AddNewSet_Click(object sender, RoutedEventArgs e)
         {
-            Window addNewSetWindow = new AddNewSetWindow();
-            bool? result = addNewSetWindow.ShowDialog();
-            if (result == true)
-            {
-                Window.GetWindow(this).Content = new ViewSet();
-            }
+            Window.GetWindow(this).Content = new AddNewSet(this);
         }
 
         private void b_EditExistingSet_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Content = new ViewSet();
+            JsonSet defaultSet = CardCollectionManager.Sets.Count > 0 ? CardCollectionManager.Sets[0] : null;
+            Window.GetWindow(this).Content = new ViewSet(defaultSet);
         }
 
         private void b_Options_Click(object sender, RoutedEventArgs e)

@@ -15,29 +15,19 @@ using System.Windows.Shapes;
 namespace MTGSetGenerator
 {
     /// <summary>
-    /// Interaction logic for AddNewSetWindow.xaml
+    /// Interaction logic for FixIssuesWindow.xaml
     /// </summary>
-    public partial class AddNewSetWindow : Window
+    public partial class ErrorWindow : Window
     {
-        public AddNewSetWindow()
+        public ErrorWindow(string errorMessgae)
         {
             InitializeComponent();
+            tbl_ErrorMessage.Text = errorMessgae;
         }
 
-        // TODO: improve dialog
-
-        //----------------//
-        // Event Handlers //
-        //----------------//
-
-        private void b_AddSet_Click(object sender, RoutedEventArgs e)
+        private void b_OK_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-        }
-
-        private void b_Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
+            Close();
         }
     }
 }

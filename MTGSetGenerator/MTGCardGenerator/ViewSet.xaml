@@ -9,26 +9,55 @@
         <!-- Page Title -->
         <TextBlock Margin="0 0 0 5" Style="{StaticResource tbl_Header}">View / Edit Set</TextBlock>
 
-        <Grid Margin="0 0 0 10">
+        <!-- Top Bar -->
+        <Grid Margin="0 0 0 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
                 <ColumnDefinition Width="50*" />
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
 
-            <Button Name="b_SwitchSet" Content="Switch Set" Grid.Column="0" Margin="0 0 2.5 0" />
+            <Button Name="b_SwitchSet" Click="b_SwitchSet_Click" Content="Switch Set" Grid.Column="0" Width="125" />
 
+            <!-- Set Icon -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Image Width="20px" Source="{StaticResource img_DarksignIcon}" />
+                <Grid Name="g_SetIcon">
+                    <Image Grid.Column="2" Width="22px" Source="{StaticResource img_SetIconBackground}" />
+                    <Image Name="img_SetIcon" Width="20px" Source="{StaticResource img_DarksignIcon}" />
+                </Grid>
                 <TextBlock Name="tbl_SetName" Margin="5 0 0 0" Style="{StaticResource tbl_Default}" >Dark Souls II: Scholar of the First Set</TextBlock>
             </StackPanel>
-            <Button Name="b_AddCard" Content="Add Card" Grid.Column="2" Margin="2.5 0 0 0" />
+
+            <Button Name="b_AddCard" Content="Add Card" Grid.Column="2" Width="125" />
         </Grid>
 
-        <ScrollViewer Height="314" Margin="0 0 0 10">
-            
+        <!-- Set Cards-->
+        <ScrollViewer Name="sv_Cards" Height="297" Margin="0 0 0 5" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Name="sp_LeftCardsList" Grid.Column="0" Margin="5 5 2.5 5" />
+                <StackPanel Name="sp_RightCardsList" Grid.Column="1" Margin="2.5 5 5 5" />
+            </Grid>
         </ScrollViewer>
 
+        <!-- Search Bar -->
+        <Grid Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*" />
+                <ColumnDefinition Width="66*" />
+                <ColumnDefinition Width="25*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
+            <TextBox Name="tb_SearchCardName" Grid.Column="1" TextChanged="tb_SearchCardName_TextChanged"></TextBox>
+            <Button Name="b_AdvancedSearch" Content="Advanced Search" Grid.Column="2" Width="125" />
+        </Grid>
+
+        <!-- Bottom Bar -->
         <Grid Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
@@ -37,10 +66,10 @@
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
 
-            <Button Name="b_SetOptions" Content="Set Options" Grid.Column="0" Margin="0 0 2.5 0" />
-            <Button Name="b_SetStatistics" Content="Set Statistics" Grid.Column="1" Margin="2.5 0 2.5 0" />
-            <Button Name="b_GetCardSheet" Content="Get Card Sheet" Grid.Column="2" Margin="2.5 0 2.5 0" />
-            <Button Name="b_Back" Click="b_Back_Click" Content="Back" Grid.Column="3" Margin="2.5 0 0 0" />
+            <Button Name="b_SetOptions" Content="Set Options" Grid.Column="0" Width="125" />
+            <Button Name="b_SetStatistics" Content="Set Statistics" Grid.Column="1" Width="125" />
+            <Button Name="b_GetCardSheet" Content="Get Card Sheet" Grid.Column="2" Width="125" />
+            <Button Name="b_Back" Click="b_Back_Click" Content="Back" Grid.Column="3" Width="125" />
         </Grid>
     </StackPanel>
 </UserControl>

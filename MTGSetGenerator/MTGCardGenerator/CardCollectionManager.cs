@@ -38,7 +38,7 @@ namespace MTGSetGenerator
         //-----------------//
 
         private static string jsonCollectionFilePath;
-        public static JsonCollection Collection { get; set; }
+        private static JsonCollection Collection { get; set; }
         
         /// <summary>
         /// Initialize the internal json memory objects.
@@ -125,6 +125,9 @@ namespace MTGSetGenerator
         // Collection Management //
         //-----------------------//
 
+        public static List<JsonSet> Sets { get { return Collection.sets; } }
+        public static List<JsonCard> Cards { get { return Collection.cards; } }
+
         /// <summary>
         /// Add a new json card to the card collection.
         /// </summary>
@@ -147,6 +150,32 @@ namespace MTGSetGenerator
             if (Collection.cards.Contains(card))
             {
                 Collection.cards.Remove(card);
+                WriteJsonCollection();
+            }
+        }
+
+        /// <summary>
+        /// Add a new json set to the card collection.
+        /// </summary>
+        /// <param name="newSet">The set to add.</param>
+        public static void AddSet(JsonSet newSet)
+        {
+            if (!Collection.sets.Contains(newSet))
+            {
+                Collection.sets.Add(newSet);
+                WriteJsonCollection();
+            }
+        }
+
+        /// <summary>
+        /// Removes a json set from the card collection.
+        /// </summary>
+        /// <param name="set">The set to remove.</param>
+        public static void RemoveSet(JsonSet set)
+        {
+            if (Collection.sets.Contains(set))
+            {
+                Collection.sets.Remove(set);
                 WriteJsonCollection();
             }
         }
