@@ -69,51 +69,51 @@ namespace MTGSetGenerator
     public class JsonCard
     {
         [DataMember]
-        internal string name;
+        public string name;
 
         [DataMember]
         public int id;
 
         [DataMember]
-        internal string cost;
+        public string cost;
 
         [DataMember]
-        internal int cmc;
+        public int cmc;
 
         [DataMember]
-        internal bool inferCmc;
+        public bool inferCmc;
 
         [DataMember]
-        internal string pretype;
+        public string pretype;
 
         [DataMember]
-        internal Type type;
+        public Type type;
 
         [DataMember]
-        internal string subtype;
+        public string subtype;
 
         [DataMember]
-        internal string text;
+        public string text;
 
         [DataMember]
-        internal string power;
+        public string power;
 
         [DataMember]
-        internal string toughness;
+        public string toughness;
 
         [DataMember]
-        internal string loyalty;
+        public string loyalty;
 
         [DataMember]
-        internal Rarity rarity;
+        public Rarity rarity;
 
         [DataMember]
-        internal Color color;
+        public Color color;
 
         [DataMember]
-        internal bool inferColor;
+        public bool inferColor;
 
-        internal enum Type
+        public enum Type
         {
             CREATURE,
             INSTANT,
@@ -124,7 +124,7 @@ namespace MTGSetGenerator
             LAND
         }
 
-        internal enum Rarity 
+        public enum Rarity 
         { 
             COMMON,
             UNCOMMON,
@@ -132,7 +132,7 @@ namespace MTGSetGenerator
             MYTHIC
         }
 
-        internal enum Color
+        public enum Color
         {
             COLORLESS,
             WHITE,

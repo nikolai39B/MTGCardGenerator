@@ -7,7 +7,7 @@
              d:DesignHeight="480" d:DesignWidth="640">
     <DockPanel Margin="10">
         <!-- Title -->
-        <TextBlock DockPanel.Dock="Top" Margin="0 0 0 5" Style="{StaticResource tbl_Header}">Select Set</TextBlock>
+        <TextBlock DockPanel.Dock="Top" Style="{StaticResource tbl_Header}">Select Set</TextBlock>
 
         <!-- Navigation Buttons -->
         <Grid DockPanel.Dock="Bottom">
@@ -22,7 +22,7 @@
         </Grid>
 
         <StackPanel VerticalAlignment="Center">
-            <ScrollViewer Height="350">
+            <ScrollViewer Height="340">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50*"/>

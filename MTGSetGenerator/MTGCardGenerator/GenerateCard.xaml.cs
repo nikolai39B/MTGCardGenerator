@@ -127,7 +127,6 @@ namespace MTGSetGenerator
             tbl_ImageFilename.Text = "";
 
             cmb_Color.SelectedIndex = 0;
-            cmb_Color.IsEnabled = false;
 
             RefreshPowerToughnessAndLoyalty();
             InferCmc();
@@ -165,9 +164,9 @@ namespace MTGSetGenerator
         }
 
         /// <summary>
-        /// Infers the card's cmc and sets the value on the UI.
+        /// Infers the card's converted mana cost from its casting cost.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The card's inferred cmc.</returns>
         public int InferCmc()
         {
             // TODO implement InferCmc()
@@ -175,13 +174,13 @@ namespace MTGSetGenerator
         }
 
         /// <summary>
-        /// Infers the card's color and sets the value on the UI.
+        /// Infers the card's color from its casting cost.
         /// </summary>
-        /// <returns></returns>
-        public ComboBoxItem InferColor()
+        /// <returns>The card's inferred color.</returns>
+        public JsonCard.Color InferColor()
         {
             // TODO implement InferColor()
-            return cbi_Colorless;
+            return JsonCard.Color.COLORLESS;
         }
 
 
