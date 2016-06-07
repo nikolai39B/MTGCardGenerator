@@ -77,6 +77,7 @@
     <Compile Include="AddNewSet.xaml.cs">
       <DependentUpon>AddNewSet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CastingCostIcons.cs" />
     <Compile Include="controls\SelectSetRow.xaml.cs">
       <DependentUpon>SelectSetRow.xaml</DependentUpon>
     </Compile>
