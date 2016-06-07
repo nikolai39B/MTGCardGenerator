@@ -139,7 +139,8 @@ namespace MTGSetGenerator
             BLUE,
             BLACK,
             RED,
-            GREEN
+            GREEN,
+            GOLD
         }
     }
 }

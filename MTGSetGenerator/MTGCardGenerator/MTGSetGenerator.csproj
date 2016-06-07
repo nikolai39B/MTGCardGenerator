@@ -83,6 +83,8 @@
     <Compile Include="ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageUtilities.cs" />
+    <Compile Include="MultiwayMap.cs" />
     <Compile Include="SelectSet.xaml.cs">
       <DependentUpon>SelectSet.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Runtime.Serialization.Json;
 
 namespace MTGSetGenerator
@@ -30,6 +30,7 @@ namespace MTGSetGenerator
         public GenerateCard(ContentControl controlToReturnTo, JsonSet currentSet)
         {
             InitializeComponent();
+            componentsInitialized = true;
 
             this.controlToReturnTo = controlToReturnTo;
             this.currentSet = currentSet;
@@ -44,53 +45,54 @@ namespace MTGSetGenerator
         /// </summary>
         private void InitConversionDictionaries()
         {
-            comboBoxItemToRarity = new Dictionary<ComboBoxItem, JsonCard.Rarity>()
-            {
-                { cbi_Common , JsonCard.Rarity.COMMON },
-                { cbi_Uncommon, JsonCard.Rarity.UNCOMMON },
-                { cbi_Rare, JsonCard.Rarity.RARE },
-                { cbi_Mythic, JsonCard.Rarity.MYTHIC }
-            };
+            rarityComboBoxMap = new MultiwayMap<ComboBoxItem, JsonCard.Rarity>(
+                new Dictionary<ComboBoxItem, JsonCard.Rarity>()
+                {
+                    { cbi_Common, JsonCard.Rarity.COMMON },
+                    { cbi_Uncommon, JsonCard.Rarity.UNCOMMON },
+                    { cbi_Rare, JsonCard.Rarity.RARE },
+                    { cbi_Mythic, JsonCard.Rarity.MYTHIC }
+                }
+            );
 
-            rarityToComboBoxItem = new Dictionary<JsonCard.Rarity, ComboBoxItem>()
-            {
-                { JsonCard.Rarity.COMMON, cbi_Common },
-                { JsonCard.Rarity.UNCOMMON, cbi_Uncommon },
-                { JsonCard.Rarity.RARE, cbi_Rare },
-                { JsonCard.Rarity.MYTHIC, cbi_Mythic }
-            };
+            typeComboBoxMap = new MultiwayMap<ComboBoxItem, JsonCard.Type>(
+                new Dictionary<ComboBoxItem, JsonCard.Type>()
+                {
+                    { cbi_Creature, JsonCard.Type.CREATURE },
+                    { cbi_Instant, JsonCard.Type.INSTANT },
+                    { cbi_Sorcery, JsonCard.Type.SORCERY },
+                    { cbi_Planeswalker, JsonCard.Type.PLANESWALKER },
+                    { cbi_Enchantment, JsonCard.Type.ENCHANTMENT },
+                    { cbi_Artifact, JsonCard.Type.ARTIFACT },
+                    { cbi_Land, JsonCard.Type.LAND }
+                }
+            );
 
-            // TODO finish implementing conversion dictionaries
-            comboBoxItemToType = new Dictionary<ComboBoxItem, JsonCard.Type>()
-            {
-                { cbi_Creature, JsonCard.Type.CREATURE },
+            typeStringMap = new MultiwayMap<string, JsonCard.Type>(
+                new Dictionary<string, JsonCard.Type>()
+                {
+                    { "Creature", JsonCard.Type.CREATURE },
+                    { "Instant", JsonCard.Type.INSTANT },
+                    { "Sorcery", JsonCard.Type.SORCERY },
+                    { "Planeswalker", JsonCard.Type.PLANESWALKER },
+                    { "Enchantment", JsonCard.Type.ENCHANTMENT },
+                    { "Artifact", JsonCard.Type.ARTIFACT },
+                    { "Land", JsonCard.Type.LAND }
+                }
+            );
 
-            };
-
-            typeToComboBoxItem = new Dictionary<JsonCard.Type, ComboBoxItem>()
-            {
-            
-            };
-
-            comboBoxItemToString = new Dictionary<ComboBoxItem, string>()
-            {
-
-            };
-
-            stringToComboBoxItem = new Dictionary<string, ComboBoxItem>()
-            {
-
-            };
-
-            comboBoxItemToColor = new Dictionary<ComboBoxItem, JsonCard.Color>()
-            {
-
-            };
-
-            colorToComboBoxItem = new Dictionary<JsonCard.Color, ComboBoxItem>()
-            {
-
-            };
+            colorComboBoxMap = new MultiwayMap<ComboBoxItem, JsonCard.Color>(
+                new Dictionary<ComboBoxItem, JsonCard.Color>
+                {
+                    { cbi_Colorless, JsonCard.Color.COLORLESS },
+                    { cbi_White, JsonCard.Color.WHITE },
+                    { cbi_Blue, JsonCard.Color.BLUE },
+                    { cbi_Black, JsonCard.Color.BLACK },
+                    { cbi_Red, JsonCard.Color.RED },
+                    { cbi_Green, JsonCard.Color.GREEN },
+                    { cbi_Gold, JsonCard.Color.GOLD }
+                }
+            );
         }
 
 
@@ -100,7 +102,7 @@ namespace MTGSetGenerator
 
         private ContentControl controlToReturnTo;
         private JsonSet currentSet;
-
+        private bool componentsInitialized = false;
 
         //---------------//
         // UI Management //
@@ -128,18 +130,18 @@ namespace MTGSetGenerator
 
             cmb_Color.SelectedIndex = 0;
 
-            RefreshPowerToughnessAndLoyalty();
+            RefreshPowerToughnessAndLoyaltyTextBoxes();
             InferCmc();
             InferColor();
 
-            RefreshCardImage();
+            RefreshCardPreview();
         }
 
 
         /// <summary>
         /// Refreshes and enables the power, toughness, and loyalty text boxes as necessary.
         /// </summary>
-        private void RefreshPowerToughnessAndLoyalty()
+        private void RefreshPowerToughnessAndLoyaltyTextBoxes()
         {
             // Everything is on by default
             tb_Power.IsEnabled = true;
@@ -183,6 +185,29 @@ namespace MTGSetGenerator
             return JsonCard.Color.COLORLESS;
         }
 
+        /// <summary>
+        /// Opens a dialog for the user to select a card image from.
+        /// </summary>
+        public void BrowseForCardImage()
+        {
+            // Create the select file dialog
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "PNG Files (.png)|*.png|GIF Files (*.gif)|*.gif|JPEG Files (*.jpg, *.jpeg)|*.jpg; *.jpeg";
+
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                // Set the image
+                BitmapImage image = new BitmapImage(new Uri(dlg.FileName));
+                cardImage = CropImageForCardPreview(image);
+                img_CardPicture.Source = cardImage;
+
+                // Set the filename on the UI
+                tbl_ImageFilename.Text = Path.GetFileName(dlg.FileName);
+            }
+        }
+
 
         //------------------//
         // Image Management //
@@ -190,30 +215,157 @@ namespace MTGSetGenerator
 
         private const int cardImageHeight = 125;
         private const int cardImageWidth = 170;
+        private CroppedBitmap cardImage = null;
 
         /// <summary>
-        /// Refreshes all elements that compose the card image.
+        /// Refreshes all elements that compose the card preview.
         /// </summary>
-        private void RefreshCardImage()
+        private void RefreshCardPreview()
         {
             // TODO finish implementing RefreshCardImage()
-            img_CardSetIcon.Source = currentSet.Icon;
-            CropCardImage();
+            RefreshCardFrame();
+            // Note: tbl_CardName.Text is dynamically bound, so no need to update
+            RefreshCardCastingCostIcons();
+            RefreshCardPreviewImage();
+            RefreshCardPreviewType();
+            RefreshCardPreviewSetIcon();
+            RefreshCardText();
         }
 
         /// <summary>
-        /// Crops the current card image to fit neatly in the allocated space.
+        /// Refreshes the card frame on the card preview.
         /// </summary>
-        private void CropCardImage()
+        private void RefreshCardFrame()
         {
-            BitmapImage image = FindResource("img_Raime") as BitmapImage;
+            // TODO implement RefreshCardFrame()
+        }
+
+        /// <summary>
+        /// Refreshes the casting cost icons on the card preview.
+        /// </summary>
+        private void RefreshCardCastingCostIcons()
+        {
+            // TODO implement RefreshCardCastingCostIcons()
+        }
+
+        /// <summary>
+        /// Refreshes the card image on the card preview.
+        /// </summary>
+        private void RefreshCardPreviewImage()
+        {            
+            img_CardPicture.Source = cardImage;
+        }
+
+        /// <summary>
+        /// Refreshes the card type text on the card preview.
+        /// </summary>
+        private void RefreshCardPreviewType()
+        {
+            // Make sure the components have been initialized
+            if (!componentsInitialized)
+            {
+                return;
+            }
+
+            string cardType = "";
+
+            // Add the pretype if necessary
+            if (tb_Pretype.Text != "")
+            {
+                cardType += tb_Pretype.Text + " ";
+            }
+
+            cardType += typeStringMap[typeComboBoxMap[cmb_Type.SelectedItem as ComboBoxItem]];
+
+            // Add the subtype if necessary
+            if (tb_Subtype.Text != "")
+            {
+                cardType += " - " + tb_Subtype.Text;
+            }
+
+            tbl_CardType.Text = cardType;
+        }
+
+        /// <summary>
+        /// Refreshes the set icon on the card preview.
+        /// </summary>
+        private void RefreshCardPreviewSetIcon()
+        {
+            // TODO add support for different rarities
+            img_CardSetIcon.Source = currentSet.Icon;
+        }
+
+        /// <summary>
+        /// Refreshes the card text on the card preview.
+        /// </summary>
+        private void RefreshCardText()
+        {
+            // Make sure the components have been initialized
+            if (!componentsInitialized)
+            {
+                return;
+            }
+
+            tbl_CardText.Text = "";
+            tbl_CardText.Inlines.Clear();
+
+            string text = tb_Text.Text;
+            string openFlavorTag = "<f>";
+            string closeFlavorTag = "</f>";
+
+            // Find the first flavor tag
+            int currentIndex = 0;
+            int indexOfFlavorTag = text.IndexOf(openFlavorTag);
+
+            while (indexOfFlavorTag != -1)
+            {
+                // Add the text until the next flavor tag
+                tbl_CardText.Inlines.Add(new Run(text.Substring(currentIndex, indexOfFlavorTag - currentIndex)));
+
+                // If we don't find a close tag, the markup is invalid
+                int indexOfCloseTag = text.IndexOf(closeFlavorTag, indexOfFlavorTag);
+                if (indexOfCloseTag == -1)
+                {
+                    tbl_CardText.Inlines.Clear();
+                    tbl_CardText.Inlines.Add(new Run("Invalid text markup."));
+                    return;
+                }
+
+                // Otherwise, add this text as italics
+                int substringStartIndex = indexOfFlavorTag + openFlavorTag.Length;
+                string substring = text.Substring(substringStartIndex, indexOfCloseTag - substringStartIndex);
+                tbl_CardText.Inlines.Add(new Run(substring) { FontStyle = FontStyles.Italic });
+
+                // Look for a new flavor tag
+                currentIndex = indexOfCloseTag + closeFlavorTag.Length;
+                indexOfFlavorTag = text.IndexOf(openFlavorTag, currentIndex);
+            }
+
+            // Add the last bit of text
+            tbl_CardText.Inlines.Add(new Run(text.Substring(currentIndex)));
+        }
+
+        /// <summary>
+        /// Crops the given card image to fit neatly in the allocated space in the card preview.
+        /// </summary>
+        /// <param name="image">The image to crop.</param>
+        /// <returns>The cropped image.</returns>
+        private CroppedBitmap CropImageForCardPreview(BitmapImage image)
+        {
+            // Ensure we have an image to work with
+            if (image == null)
+            {
+                return null;
+            }
             
+            // Compute the image ratios
             double requiredHeightOverWidth = ((double)cardImageHeight) / cardImageWidth;
-            double currentHeightOverWidth = image.PixelHeight / image.PixelWidth;
+            double currentHeightOverWidth = ((double)image.PixelHeight) / image.PixelWidth;
 
             int centerX = image.PixelWidth / 2;
             int centerY = image.PixelHeight / 2;
 
+            // Calculate the final widths and heights for the image
             int finalWidth = image.PixelWidth;
             int finalHeight = image.PixelHeight;
 
@@ -229,41 +381,63 @@ namespace MTGSetGenerator
                 finalWidth = (int)Math.Ceiling(finalHeight / requiredHeightOverWidth);
             }
 
-            CroppedBitmap newImage = new CroppedBitmap(image, new Int32Rect(
+            // Crop the image
+            CroppedBitmap croppedImage = new CroppedBitmap(image, new Int32Rect(
                 centerX - finalWidth / 2, 
                 centerY - finalHeight / 2, 
                 finalWidth, finalHeight));
-            img_CardPicture.Source = newImage;
+
+            return croppedImage;
         }
-
-
-        private void RefreshCardType()
-        {
-
-        }
-
 
         //----------------//
         // Event Handlers //
         //----------------//
 
+        private void tb_Pretype_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshCardPreviewType();
+        }
+
         private void cmb_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Make sure these have been initialized
-            if (tb_Power != null && tb_Toughness != null && tb_Loyalty != null)
+            // Make sure the components have been initialized
+            if (!componentsInitialized)
             {
-                RefreshPowerToughnessAndLoyalty();
+                return;
             }
+
+            RefreshPowerToughnessAndLoyaltyTextBoxes();
+            RefreshCardPreviewType();
+        }
+
+        private void tb_Subtype_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshCardPreviewType();
+        }
+
+        private void tb_Text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshCardText();
         }
 
         private void b_Browse_Click(object sender, RoutedEventArgs e)
         {
-
+            BrowseForCardImage();
         }
 
         private void b_Help_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Render the image
+            double imageScale = 200.0;
+            BitmapSource img = ImageUtilities.CaptureScreen(cnvs_CardPreview, imageScale, imageScale);
+
+            PngBitmapEncoder pngImage = new PngBitmapEncoder();
+            pngImage.Frames.Add(BitmapFrame.Create(img));
+            using (Stream fileStream = File.Create(@"C:\Users\ad3vfw\Documents\Visual Studio 2013\Projects\MTGSetGenerator\MTGSetGenerator\MTGCardGenerator\images\test\test.png"))
+            {
+                pngImage.Save(fileStream);
+            }
         }
 
         private void b_Clear_Click(object sender, RoutedEventArgs e)
@@ -294,7 +468,7 @@ namespace MTGSetGenerator
             newCard.power = tb_Power.Text;
             newCard.toughness = tb_Toughness.Text;
 
-            newCard.rarity = comboBoxItemToRarity[cmb_Rarity.SelectedItem as ComboBoxItem];
+            newCard.rarity = rarityComboBoxMap[cmb_Rarity.SelectedItem as ComboBoxItem];
 
             newCard.subtype = tb_Subtype.Text;
 
@@ -344,16 +518,9 @@ namespace MTGSetGenerator
         // Conversion Dictionaries //
         //-------------------------//
 
-        private Dictionary<ComboBoxItem, JsonCard.Rarity> comboBoxItemToRarity;
-        private Dictionary<JsonCard.Rarity, ComboBoxItem> rarityToComboBoxItem;
-
-        private Dictionary<ComboBoxItem, JsonCard.Type> comboBoxItemToType;
-        private Dictionary<JsonCard.Type, ComboBoxItem> typeToComboBoxItem;
-
-        private Dictionary<ComboBoxItem, string> comboBoxItemToString;
-        private Dictionary<string, ComboBoxItem> stringToComboBoxItem;
-
-        private Dictionary<ComboBoxItem, JsonCard.Color> comboBoxItemToColor;
-        private Dictionary<JsonCard.Color, ComboBoxItem> colorToComboBoxItem;
+        private MultiwayMap<ComboBoxItem, JsonCard.Rarity> rarityComboBoxMap;
+        private MultiwayMap<ComboBoxItem, JsonCard.Type> typeComboBoxMap;
+        private MultiwayMap<string, JsonCard.Type> typeStringMap;
+        private MultiwayMap<ComboBoxItem, JsonCard.Color> colorComboBoxMap;
     }
 }
