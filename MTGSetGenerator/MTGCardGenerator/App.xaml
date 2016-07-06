@@ -10,7 +10,12 @@
             <Setter Property="FontSize" Value="18" />
             <Setter Property="Height" Value="60" />
         </Style>
-                
+        
+        <!-- Checkbox Styles -->
+        <Style x:Key="cb_Default" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#ffffff" />
+        </Style>
+
         <!-- TextBlock Styles -->
         <Style x:Key="tbl_Default" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#ffffff" />
@@ -44,16 +49,16 @@
 
         <Style x:Key="tbl_MtgCardText" TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="fonts/#MPlantin" />
-            <Setter Property="FontSize" Value="7" />
+            <Setter Property="FontSize" Value="8" />
         </Style>
 
         <Style x:Key="tbl_MtgCardTitle" BasedOn="{StaticResource tbl_MtgCardText}" TargetType="{x:Type TextBlock}">
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="14" />
         </Style>
 
         <Style x:Key="tbl_MtgCardSmallTitle" BasedOn="{StaticResource tbl_MtgCardTitle}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontSize" Value="13" />
         </Style>
 
         <!-- Images -->
@@ -65,6 +70,7 @@
         <BitmapImage x:Key="img_FrameRed" UriSource="./images/red_border.png" />
         <BitmapImage x:Key="img_FrameGold" UriSource="./images/gold_border.png" />
         <BitmapImage x:Key="img_FrameSilver" UriSource="./images/silver_border.png" />
+        <BitmapImage x:Key="img_GrayFill" UriSource="./images/gray_fill.png" />
         <BitmapImage x:Key="img_Raime" UriSource="./images/raime.jpg" />
         <BitmapImage x:Key="img_SetIconBackground" UriSource="./images/set_icon_background.png" />
     </Application.Resources>

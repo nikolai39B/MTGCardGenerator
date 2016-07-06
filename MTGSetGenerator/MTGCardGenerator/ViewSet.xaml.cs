@@ -83,7 +83,7 @@ namespace MTGSetGenerator
 
         private void b_AddCard_Click(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Content = new GenerateCard(this, Set);
+            Window.GetWindow(this).Content = new AddNewCard(); //new GenerateCard(this, Set);
         }
 
         private void b_Back_Click(object sender, RoutedEventArgs e)

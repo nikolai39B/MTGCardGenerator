@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="640">
+    <!--
     <DockPanel Margin="10">
-        <!-- Title -->
+        --><!-- Title --><!--
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource tbl_Header}">Generate Card</TextBlock>
 
-        <!-- Navigation Buttons -->
+        --><!-- Navigation Buttons --><!--
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
@@ -24,7 +25,7 @@
             <Button Name="b_Cancel" Click="b_Cancel_Click" Content="Cancel" Grid.Column="3" Width="125" />
         </Grid>
 
-        <!-- Page Content -->
+        --><!-- Page Content --><!--
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60*" />
@@ -32,7 +33,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="0 0 5 0">
-                <!-- Card Name -->
+                --><!-- Card Name --><!--
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*" />
@@ -43,7 +44,7 @@
                     <TextBox Name="tb_Name" Grid.Column="1">Test Name</TextBox>
                 </Grid>
 
-                <!-- Casting Cost -->
+                --><!-- Casting Cost --><!--
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*" />
@@ -55,18 +56,18 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Casting Cost -->
+                    --><!-- Casting Cost --><!--
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Cost:</TextBlock>
                     <TextBox Name="tb_Cost" Grid.Column="1"></TextBox>
 
-                    <!-- CMC -->
+                    --><!-- CMC --><!--
                     <TextBlock Grid.Column="3" Style="{StaticResource tbl_Label}">CMC:</TextBlock>
                     <TextBox Name="tb_Cmc" Grid.Column="4" IsEnabled="True" ></TextBox>
                     <TextBlock Grid.Column="5" Style="{StaticResource tbl_Label}">Infer CMC?</TextBlock>
                     <CheckBox Name="cb_InferCMC" Grid.Column="6" HorizontalAlignment="Left" IsChecked="True" VerticalAlignment="Center"></CheckBox>
                 </Grid>
 
-                <!-- Card Type -->
+                --><!-- Card Type --><!--
                 <Grid Margin="0 0 0 5" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="55*" />
@@ -77,7 +78,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" Grid.ColumnSpan="2" Margin="0,3,164,3">Type:</TextBlock>
-                    <TextBox Name="tb_Pretype" Grid.Column="1" TextChanged="tb_Pretype_TextChanged" />
+                    <TextBox Name="tb_Supertype" Grid.Column="1" TextChanged="tb_Supertype_TextChanged" />
                     <ComboBox Name="cmb_Type" Grid.Column="3" SelectedIndex="0" Grid.ColumnSpan="2" SelectionChanged="cmb_Type_SelectionChanged">
                         <ComboBoxItem Name="cbi_Creature">Creature</ComboBoxItem>
                         <ComboBoxItem Name="cbi_Instant">Instant</ComboBoxItem>
@@ -89,7 +90,7 @@
                     </ComboBox>
                 </Grid>
 
-                <!-- Card Subtype -->
+                --><!-- Card Subtype --><!--
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*" />
@@ -100,7 +101,7 @@
                     <TextBox Name="tb_Subtype" Grid.Column="1" TextChanged="tb_Subtype_TextChanged"></TextBox>
                 </Grid>
 
-                <!-- Card Text -->
+                --><!-- Card Text --><!--
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*" />
@@ -119,10 +120,10 @@
                     </Grid>
                 </Grid>
 
-                <!-- Font Size -->
+                --><!-- Font Size -->
             <!-- TODO: Implement -->
 
-            <!-- Image -->
+            <!-- Image --><!--
             <Grid Margin="0 0 0 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="15*" />
@@ -137,23 +138,23 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="5 0 0 0">
-                <Canvas Name="cnvs_CardPreview" Margin="0 0 0 5" Height="280" Width="200">
-                    <!-- Card Frame and Image -->
+                <Canvas Name="cnvs_CardPreview" Margin="0 0 0 5" Height="340" Width="200">
+                    --><!-- Card Frame and Image --><!--
                     <Image Name="img_CardPicture" Canvas.Left="15" Canvas.Top="32" Height="125" Width="170" Source="{StaticResource img_Raime}" />
-                    <Image Name="img_CardFrame" Source="{StaticResource img_FrameGold}" Width="200"/>
+                    <Image Name="img_CardFrame" Source="{StaticResource img_FrameGold}" Height="340"/>
 
-                    <!-- Card Name and Casting Cost -->
+                    --><!-- Card Name and Casting Cost --><!--
                     <TextBlock Name="tbl_CardName" Canvas.Left="18" Canvas.Top="17" Style="{StaticResource tbl_MtgCardTitle}" Text="{Binding Path=Text, ElementName=tb_Name}" />
                     <StackPanel Name="sp_CardCastingCostIcons" Canvas.Right="18" Canvas.Top="17" Orientation="Horizontal" FlowDirection="RightToLeft" >
                     </StackPanel>
 
-                    <!-- Card Type and Set Icon -->
+                    --><!-- Card Type and Set Icon --><!--
                     <Viewbox Canvas.Left="18" Canvas.Top="159" Height="11" HorizontalAlignment="Left" Stretch="Fill" StretchDirection="DownOnly" Width="150">
                         <TextBlock Name="tbl_CardType" Style="{StaticResource tbl_MtgCardSmallTitle}" Text="Legendary Creature - Knight" />
                     </Viewbox>
                     <Image Name="img_CardSetIcon" Canvas.Left="170" Canvas.Top="159" Source="{StaticResource img_SetIconBackground}" MaxHeight="11" MaxWidth="11"/>
 
-                    <!-- Card Text -->
+                    --><!-- Card Text --><!--
                     <TextBlock Name="tbl_CardText" Canvas.Left="19" Canvas.Top="176" Height="74" Style="{StaticResource tbl_MtgCardText}" TextWrapping="Wrap" Width="161">
                         Test asdfa <LineBreak /> 
                         dsa fsad fsad dsa ds ad <LineBreak /> 
@@ -164,8 +165,8 @@
                     </TextBlock>
                 </Canvas>
 
-                    <!-- Card Colors -->
-                <Grid Margin="0 0 0 5">
+                    --><!-- Card Colors -->
+                <!--Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20*" />
                         <ColumnDefinition Width="40*" />
@@ -192,9 +193,9 @@
                         <ComboBoxItem Name="cbi_Mythic">M</ComboBoxItem>
                     </ComboBox>
 
-                </Grid>
+                </Grid-->
 
-                <!-- Power / Toughness / Loyalty -->
+                <!-- Power / Toughness / Loyalty ->
                 <Grid Margin="0 0 0 5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20*" />
@@ -211,8 +212,8 @@
                     <TextBox Name="tb_Toughness" Grid.Column="3"/>
                     <TextBlock Grid.Column="4" Style="{StaticResource tbl_Label}">Loyalty:</TextBlock>
                     <TextBox Name="tb_Loyalty" Grid.Column="5"/>
-                </Grid>
+                </Grid--><!--
             </StackPanel>
         </Grid>
-    </DockPanel>
+    </DockPanel>-->
 </UserControl>

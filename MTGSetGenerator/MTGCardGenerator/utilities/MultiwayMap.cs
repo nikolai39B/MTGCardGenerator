@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTGSetGenerator
 {
-    class MultiwayMap<F, G>
+    class MultiwayMap<TKeyOne, TKeyTwo>
     {
         /// <summary>
         /// Initializes an empty MultiwayMap.
@@ -19,7 +19,7 @@ namespace MTGSetGenerator
         /// Initializes a MultiwayMap using the given dictionary as the starting values.
         /// </summary>
         /// <param name="initialValues">The starting values for the map.</param>
-        public MultiwayMap(Dictionary<F, G> initialValues)
+        public MultiwayMap(Dictionary<TKeyOne, TKeyTwo> initialValues)
         {
             foreach (var pair in initialValues)
             {
@@ -31,7 +31,7 @@ namespace MTGSetGenerator
         /// Initializes a MultiwayMap using the given dictionary as the starting values.
         /// </summary>
         /// <param name="initialValues">The starting values for the map.</param>
-        public MultiwayMap(Dictionary<G, F> initialValues)
+        public MultiwayMap(Dictionary<TKeyTwo, TKeyOne> initialValues)
         {
             foreach (var pair in initialValues)
             {
@@ -42,8 +42,8 @@ namespace MTGSetGenerator
         //--------------//
         // Private Data //
         //--------------//
-        private Dictionary<F, G> fToGMap = new Dictionary<F, G>();
-        private Dictionary<G, F> gToFMap = new Dictionary<G, F>();
+        private Dictionary<TKeyOne, TKeyTwo> tKeyOneToTKeyTwoMap = new Dictionary<TKeyOne, TKeyTwo>();
+        private Dictionary<TKeyTwo, TKeyOne> tKeyTwoToTKeyOneMap = new Dictionary<TKeyTwo, TKeyOne>();
 
         
         //---------------//
@@ -52,24 +52,24 @@ namespace MTGSetGenerator
         /// <summary>
         /// Adds an entry with the given values. Will not overwrite existing entries.
         /// </summary>
-        /// <param name="fKey">The key of type F.</param>
-        /// <param name="gKey">The key of type G.</param>
+        /// <param name="tKeyOneKey">The key of type TKeyOne.</param>
+        /// <param name="tKeyTwoKey">The key of type TKeyTwo.</param>
         /// <exception cref="ArgumentException">Thrown if the collection already contains an entry with one of the given keys.</exception>
-        public void Add(F fKey, G gKey)
+        public void Add(TKeyOne tKeyOneKey, TKeyTwo tKeyTwoKey)
         {
             // Check to make sure we don't have duplicates.
-            if (fToGMap.Keys.Contains(fKey))
+            if (tKeyOneToTKeyTwoMap.Keys.Contains(tKeyOneKey))
             {
                 throw new ArgumentException("Collection already contains an entry with the given fKey.");
             }
-            if (gToFMap.Keys.Contains(gKey))
+            if (tKeyTwoToTKeyOneMap.Keys.Contains(tKeyTwoKey))
             {
                 throw new ArgumentException("Collection already contains an entry with the given gKey.");
             }
 
             // Assign the new values
-            fToGMap[fKey] = gKey;
-            gToFMap[gKey] = fKey;
+            tKeyOneToTKeyTwoMap[tKeyOneKey] = tKeyTwoKey;
+            tKeyTwoToTKeyOneMap[tKeyTwoKey] = tKeyOneKey;
         }
 
         /// <summary>
@@ -77,21 +77,21 @@ namespace MTGSetGenerator
         /// </summary>
         /// <param name="fKey">The key of type F.</param>
         /// <param name="gKey">The key of type G.</param>
-        public void AddOrUpdate(F fKey, G gKey)
+        public void AddOrUpdate(TKeyOne tKeyOneKey, TKeyTwo tKeyTwoKey)
         {
             // Check to make sure we don't have duplicates.
-            if (fToGMap.Keys.Contains(fKey))
+            if (tKeyOneToTKeyTwoMap.Keys.Contains(tKeyOneKey))
             {
-                fToGMap.Remove(fKey);
+                tKeyOneToTKeyTwoMap.Remove(tKeyOneKey);
             }
-            if (gToFMap.Keys.Contains(gKey))
+            if (tKeyTwoToTKeyOneMap.Keys.Contains(tKeyTwoKey))
             {
-                gToFMap.Remove(gKey);
+                tKeyTwoToTKeyOneMap.Remove(tKeyTwoKey);
             }
 
             // Assign the new values
-            fToGMap[fKey] = gKey;
-            gToFMap[gKey] = fKey;
+            tKeyOneToTKeyTwoMap[tKeyOneKey] = tKeyTwoKey;
+            tKeyTwoToTKeyOneMap[tKeyTwoKey] = tKeyOneKey;
         }
 
 
@@ -103,48 +103,60 @@ namespace MTGSetGenerator
         /// Removes the entry with the given key from the collection.
         /// </summary>
         /// <param name="key">The key whose entry to remove.</param>
-        public void Remove(F key)
+        public void Remove(TKeyOne key)
         {
-            G gMapKey = fToGMap[key];
-            fToGMap.Remove(key);
-            gToFMap.Remove(gMapKey);
+            TKeyTwo gMapKey = tKeyOneToTKeyTwoMap[key];
+            tKeyOneToTKeyTwoMap.Remove(key);
+            tKeyTwoToTKeyOneMap.Remove(gMapKey);
         }
 
         /// <summary>
         /// Removes the entry with the given key from the collection.
         /// </summary>
         /// <param name="key">The key whose entry to remove.</param>
-        public void Remove(G key)
+        public void Remove(TKeyTwo key)
         {
-            F fMapKey = gToFMap[key];
-            gToFMap.Remove(key);
-            fToGMap.Remove(fMapKey);
+            TKeyOne fMapKey = tKeyTwoToTKeyOneMap[key];
+            tKeyTwoToTKeyOneMap.Remove(key);
+            tKeyOneToTKeyTwoMap.Remove(fMapKey);
         }
 
 
-        //-------------------//
-        // Bracket Overloads //
-        //-------------------//
-        public G this[F key]
+        //------------------//
+        // Accessing Values //
+        //------------------//
+        public TKeyTwo this[TKeyOne key]
         {
             get
             {
-                return fToGMap[key];
+                return tKeyOneToTKeyTwoMap[key];
             }
             set
             {
                 AddOrUpdate(key, value);
             }
         }
-        public F this[G key]
+        public TKeyOne this[TKeyTwo key]
         {
             get
             {
-                return gToFMap[key];
+                return tKeyTwoToTKeyOneMap[key];
             }
             set
             {
                 AddOrUpdate(value, key);
+            }
+        }
+
+        public List<TKeyOne> KeyOnes { get { return tKeyOneToTKeyTwoMap.Keys.ToList(); } }
+        public List<TKeyTwo> KeyTwos { get { return tKeyTwoToTKeyOneMap.Keys.ToList(); } }
+        public List<Tuple<TKeyOne, TKeyTwo>> KeyPairs 
+        {
+            get
+            {
+                return (from pair in tKeyOneToTKeyTwoMap
+                        select new Tuple<TKeyOne, TKeyTwo>(pair.Key, pair.Value)
+                        ).ToList();
             }
         }
     }

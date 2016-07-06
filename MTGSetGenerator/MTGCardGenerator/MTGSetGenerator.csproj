@@ -74,25 +74,52 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddNewCard.xaml.cs">
+      <DependentUpon>AddNewCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddNewSet.xaml.cs">
       <DependentUpon>AddNewSet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CastingCostIcons.cs" />
+    <Compile Include="controls\AddNewCardInitialPage.xaml.cs">
+      <DependentUpon>AddNewCardInitialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\CardPreview.xaml.cs">
+      <DependentUpon>CardPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\IAddNewCardPage.cs" />
+    <Compile Include="data\CardColors.cs" />
+    <Compile Include="data\CardTypes.cs" />
+    <Compile Include="data\CostIcons.cs" />
     <Compile Include="controls\SelectSetRow.xaml.cs">
       <DependentUpon>SelectSetRow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="data\CardFrames.cs" />
+    <Compile Include="data\DataManager.cs" />
     <Compile Include="ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageUtilities.cs" />
-    <Compile Include="MultiwayMap.cs" />
+    <Compile Include="utilities\ExtentionMethods.cs" />
+    <Compile Include="utilities\ImageUtilities.cs" />
+    <Compile Include="utilities\MultiwayMap.cs" />
     <Compile Include="SelectSet.xaml.cs">
       <DependentUpon>SelectSet.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewSet.xaml.cs">
       <DependentUpon>ViewSet.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddNewCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddNewSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\AddNewCardInitialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\CardPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,6 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\raime.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\gray_fill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

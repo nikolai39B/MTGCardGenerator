@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="MTGSetGenerator.AddNewCardInitialPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="305">
+    <StackPanel Grid.Column="0" Margin="0 0 5 0" VerticalAlignment="Center">
+        <!-- Card Name -->
+        <Grid Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
+            <TextBox Name="tb_Name" Grid.Column="1" TextChanged="tb_UiElement_TextChanged" />
+        </Grid>
+
+        <!-- Casting Cost -->
+        <Grid Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="54*" />
+                <ColumnDefinition Width="18*" />
+                <ColumnDefinition Width="8*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Casting Cost -->
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Cost:</TextBlock>
+            <TextBox Name="tb_Cost" Grid.Column="1" TextChanged="tb_Cost_TextChanged" />
+
+            <!-- CMC -->
+            <TextBlock Grid.Column="2" Style="{StaticResource tbl_Label}">CMC:</TextBlock>
+            <TextBlock Name="tbl_Cmc" Grid.Column="3" HorizontalAlignment="Center" IsEnabled="True" Style="{StaticResource tbl_Default}" />
+        </Grid>
+
+        <!-- Color -->
+        <Grid Margin="0 0 0 15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Color:</TextBlock>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Name="cb_InferColor" Click="cb_InferColor_Click"  Content="Infer?" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource cb_Default}" />
+                <CheckBox Name="cb_White" Click="cb_UiElement_Click" Content="W" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" />
+                <CheckBox Name="cb_Blue" Click="cb_UiElement_Click" Content="U" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" />
+                <CheckBox Name="cb_Black" Click="cb_UiElement_Click" Content="B" Grid.Column="3" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" />
+                <CheckBox Name="cb_Green" Click="cb_UiElement_Click" Content="G" Grid.Column="4" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" />
+                <CheckBox Name="cb_Red" Click="cb_UiElement_Click" Content="R" Grid.Column="5" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" />
+            </Grid>
+        </Grid>
+
+        <!-- Card Type -->
+        <Grid Margin="0 0 0 5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="35*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" >Supertype:</TextBlock>
+            <CheckBox Name="cb_Legendary" Click="cb_UiElement_Click" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource cb_Default}" VerticalAlignment="Center" >Legendary</CheckBox>
+            <CheckBox Name="cb_Tribal" Click="cb_UiElement_Click" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource cb_Default}" VerticalAlignment="Center" >Tribal</CheckBox>
+            <TextBox Name="tb_Supertype" Grid.Column="3" TextChanged="tb_UiElement_TextChanged"></TextBox>
+
+        </Grid>
+
+        <!-- Card Type -->
+        <Grid Margin="0 0 0 5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="37.5*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="37.5*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}" >Type:</TextBlock>
+            <ComboBox Name="cmb_AuxType" Grid.Column="1" SelectedIndex="0" SelectionChanged="cmb_UiElement_SelectionChanged">
+                <ComboBoxItem Name="cbi_AuxTypeBlank">(None)</ComboBoxItem>
+                <ComboBoxItem Name="cbi_AuxTypeArtifact">Artifact</ComboBoxItem>
+                <ComboBoxItem Name="cbi_AuxTypeEnchantment">Enchantment</ComboBoxItem>
+                <ComboBoxItem Name="cbi_AuxTypeLand">Land</ComboBoxItem>
+            </ComboBox>
+
+            <ComboBox Name="cmb_BaseType" Grid.Column="3" SelectedIndex="0" SelectionChanged="cmb_UiElement_SelectionChanged">
+                <ComboBoxItem Name="cbi_BaseTypeCreature">Creature</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypeArtifact">Artifact</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypeEnchantment">Enchantment</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypeInstant">Instant</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypeLand">Land</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypePlaneswalker">Planeswalker</ComboBoxItem>
+                <ComboBoxItem Name="cbi_BaseTypeSorcery">Sorcery</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <!-- Card Subtype -->
+        <Grid Margin="0 0 0 15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Subtype:</TextBlock>
+            <TextBox Name="tb_Subtype" Grid.Column="1" TextChanged="tb_UiElement_TextChanged"></TextBox>
+        </Grid>
+
+        <!-- Image -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Image:</TextBlock>
+            <TextBlock Name="tbl_ImageFilename" Grid.Column="1" Style="{StaticResource tbl_Default}" />
+            <Button Name="b_Browse" Click="b_Browse_Click"  Content="Browse..." Grid.Column="2" HorizontalAlignment="Right" Width="75" />
+        </Grid>
+    </StackPanel>
+</UserControl>

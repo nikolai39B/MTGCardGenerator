@@ -84,7 +84,16 @@ namespace MTGSetGenerator
         public bool inferCmc;
 
         [DataMember]
-        public string pretype;
+        public bool isLegendary;
+
+        [DataMember]
+        public bool isTribal;
+
+        [DataMember]
+        public string supertype;
+
+        [DataMember]
+        public Type pretype;
 
         [DataMember]
         public Type type;
