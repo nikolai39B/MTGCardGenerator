@@ -80,6 +80,12 @@
     <Compile Include="AddNewSet.xaml.cs">
       <DependentUpon>AddNewSet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\AddNewCardDetailsPage.xaml.cs">
+      <DependentUpon>AddNewCardDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\AddNewCardCorePage.xaml.cs">
+      <DependentUpon>AddNewCardCorePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\AddNewCardInitialPage.xaml.cs">
       <DependentUpon>AddNewCardInitialPage.xaml</DependentUpon>
     </Compile>
@@ -87,7 +93,11 @@
       <DependentUpon>CardPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\IAddNewCardPage.cs" />
+    <Compile Include="controls\PlaneswalkerAbilityRow.xaml.cs">
+      <DependentUpon>PlaneswalkerAbilityRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="data\CardColors.cs" />
+    <Compile Include="data\CardForms.cs" />
     <Compile Include="data\CardTypes.cs" />
     <Compile Include="data\CostIcons.cs" />
     <Compile Include="controls\SelectSetRow.xaml.cs">
@@ -115,11 +125,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="controls\AddNewCardDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\AddNewCardCorePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\AddNewCardInitialPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\CardPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\PlaneswalkerAbilityRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +267,46 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\gray_fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cost_icons\cost_icon_00.png" />
+    <Resource Include="images\cost_icons\cost_icon_01.png" />
+    <Resource Include="images\cost_icons\cost_icon_02.png" />
+    <Resource Include="images\cost_icons\cost_icon_03.png" />
+    <Resource Include="images\cost_icons\cost_icon_04.png" />
+    <Resource Include="images\cost_icons\cost_icon_05.png" />
+    <Resource Include="images\cost_icons\cost_icon_06.png" />
+    <Resource Include="images\cost_icons\cost_icon_07.png" />
+    <Resource Include="images\cost_icons\cost_icon_08.png" />
+    <Resource Include="images\cost_icons\cost_icon_09.png" />
+    <Resource Include="images\cost_icons\cost_icon_10.png" />
+    <Resource Include="images\cost_icons\cost_icon_11.png" />
+    <Resource Include="images\cost_icons\cost_icon_12.png" />
+    <Resource Include="images\cost_icons\cost_icon_black.png" />
+    <Resource Include="images\cost_icons\cost_icon_black_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_black_red.png" />
+    <Resource Include="images\cost_icons\cost_icon_blue.png" />
+    <Resource Include="images\cost_icons\cost_icon_blue_black.png" />
+    <Resource Include="images\cost_icons\cost_icon_blue_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_blue_red.png" />
+    <Resource Include="images\cost_icons\cost_icon_colorless.png" />
+    <Resource Include="images\cost_icons\cost_icon_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_black.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_blue.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_colorless.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_red.png" />
+    <Resource Include="images\cost_icons\cost_icon_phy_white.png" />
+    <Resource Include="images\cost_icons\cost_icon_red.png" />
+    <Resource Include="images\cost_icons\cost_icon_red_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_tap.png" />
+    <Resource Include="images\cost_icons\cost_icon_untap.png" />
+    <Resource Include="images\cost_icons\cost_icon_white.png" />
+    <Resource Include="images\cost_icons\cost_icon_white_black.png" />
+    <Resource Include="images\cost_icons\cost_icon_white_blue.png" />
+    <Resource Include="images\cost_icons\cost_icon_white_green.png" />
+    <Resource Include="images\cost_icons\cost_icon_white_red.png" />
+    <Resource Include="images\cost_icons\cost_icon_X.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

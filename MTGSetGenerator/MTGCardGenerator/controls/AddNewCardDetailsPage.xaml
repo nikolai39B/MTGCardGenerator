@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="MTGSetGenerator.AddNewCardDetailsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MTGSetGenerator"
+             mc:Ignorable="d" d:DesignWidth="305">
+    <StackPanel Grid.Column="0" Margin="0 0 5 0" VerticalAlignment="Center">
+        <!-- Card Text -->
+        <Grid Name="g_CardText" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Text:</TextBlock>
+            <TextBox Name="tb_Text" AcceptsReturn="True" Grid.Column="1" Height="100" TextChanged="tb_UiElement_TextChanged" />
+        </Grid>
+
+        <!-- Creature P/T -->
+        <Grid Name="g_CreaturePT" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="35*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">P / T:</TextBlock>
+            <TextBox Name="tb_Power" Grid.Column="1" TextChanged="tb_UiElement_TextChanged" />
+            
+            <TextBlock Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource tbl_Default}" >/</TextBlock>
+            <TextBox Name="tb_Toughness" Grid.Column="3" TextChanged="tb_UiElement_TextChanged" />
+
+        </Grid>
+
+        <!-- Planeswalker Abilities -->
+        <Grid Name="g_PlaneswalkerAbilities" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Abilities:</TextBlock>
+            <StackPanel Name="sp_PlaneswalkerAbilities" Grid.Column="1">
+                <local:PlaneswalkerAbilityRow x:Name="uc_Ability1" Margin="0 0 0 5" />
+                <local:PlaneswalkerAbilityRow x:Name="uc_Ability2" Margin="0 0 0 5" />
+                <local:PlaneswalkerAbilityRow x:Name="uc_Ability3" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Planeswalker Loyalty -->
+        <Grid Name="g_PlaneswalkerLoyalty" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="60*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Loyalty:</TextBlock>
+            <TextBox Name="tb_Loyalty" Grid.Column="1" TextChanged="tb_UiElement_TextChanged" />
+        </Grid>
+    </StackPanel>
+</UserControl>

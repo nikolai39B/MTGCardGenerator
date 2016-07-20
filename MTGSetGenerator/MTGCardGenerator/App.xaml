@@ -15,6 +15,18 @@
         <Style x:Key="cb_Default" TargetType="CheckBox">
             <Setter Property="Foreground" Value="#ffffff" />
         </Style>
+        
+        <!-- Image Styles -->
+        <Style x:Key="img_CastingCostIcon" TargetType="Image">
+            <Setter Property="FlowDirection" Value="LeftToRight" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Margin" Value="0 0 1 0" />
+        </Style>
+
+        <!-- RadioButton Styles -->
+        <Style x:Key="rb_Default" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="#ffffff" />
+        </Style>
 
         <!-- TextBlock Styles -->
         <Style x:Key="tbl_Default" TargetType="{x:Type TextBlock}">
@@ -61,7 +73,47 @@
             <Setter Property="FontSize" Value="13" />
         </Style>
 
-        <!-- Images -->
+        <!-- Cost Icon Images -->
+        <BitmapImage x:Key="img_CostIconX" UriSource="./images/cost_icons/cost_icon_X.png" />
+        <BitmapImage x:Key="img_CostIcon00" UriSource="./images/cost_icons/cost_icon_00.png" />
+        <BitmapImage x:Key="img_CostIcon01" UriSource="./images/cost_icons/cost_icon_01.png" />
+        <BitmapImage x:Key="img_CostIcon02" UriSource="./images/cost_icons/cost_icon_02.png" />
+        <BitmapImage x:Key="img_CostIcon03" UriSource="./images/cost_icons/cost_icon_03.png" />
+        <BitmapImage x:Key="img_CostIcon04" UriSource="./images/cost_icons/cost_icon_04.png" />
+        <BitmapImage x:Key="img_CostIcon05" UriSource="./images/cost_icons/cost_icon_05.png" />
+        <BitmapImage x:Key="img_CostIcon06" UriSource="./images/cost_icons/cost_icon_06.png" />
+        <BitmapImage x:Key="img_CostIcon07" UriSource="./images/cost_icons/cost_icon_07.png" />
+        <BitmapImage x:Key="img_CostIcon08" UriSource="./images/cost_icons/cost_icon_08.png" />
+        <BitmapImage x:Key="img_CostIcon09" UriSource="./images/cost_icons/cost_icon_09.png" />
+        <BitmapImage x:Key="img_CostIcon10" UriSource="./images/cost_icons/cost_icon_10.png" />
+        <BitmapImage x:Key="img_CostIcon11" UriSource="./images/cost_icons/cost_icon_11.png" />
+        <BitmapImage x:Key="img_CostIcon12" UriSource="./images/cost_icons/cost_icon_12.png" />
+        <BitmapImage x:Key="img_CostIconColorless" UriSource="./images/cost_icons/cost_icon_colorless.png" />
+        <BitmapImage x:Key="img_CostIconWhite" UriSource="./images/cost_icons/cost_icon_white.png" />
+        <BitmapImage x:Key="img_CostIconBlue" UriSource="./images/cost_icons/cost_icon_blue.png" />
+        <BitmapImage x:Key="img_CostIconBlack" UriSource="./images/cost_icons/cost_icon_black.png" />
+        <BitmapImage x:Key="img_CostIconRed" UriSource="./images/cost_icons/cost_icon_red.png" />
+        <BitmapImage x:Key="img_CostIconGreen" UriSource="./images/cost_icons/cost_icon_green.png" />
+        <BitmapImage x:Key="img_CostIconWhiteBlue" UriSource="./images/cost_icons/cost_icon_white_blue.png" />
+        <BitmapImage x:Key="img_CostIconWhiteBlack" UriSource="./images/cost_icons/cost_icon_white_black.png" />
+        <BitmapImage x:Key="img_CostIconWhiteRed" UriSource="./images/cost_icons/cost_icon_white_red.png" />
+        <BitmapImage x:Key="img_CostIconWhiteGreen" UriSource="./images/cost_icons/cost_icon_white_green.png" />
+        <BitmapImage x:Key="img_CostIconBlueBlack" UriSource="./images/cost_icons/cost_icon_blue_black.png" />
+        <BitmapImage x:Key="img_CostIconBlueRed" UriSource="./images/cost_icons/cost_icon_blue_red.png" />
+        <BitmapImage x:Key="img_CostIconBlueGreen" UriSource="./images/cost_icons/cost_icon_blue_green.png" />
+        <BitmapImage x:Key="img_CostIconBlackRed" UriSource="./images/cost_icons/cost_icon_black_red.png" />
+        <BitmapImage x:Key="img_CostIconBlackGreen" UriSource="./images/cost_icons/cost_icon_black_green.png" />
+        <BitmapImage x:Key="img_CostIconRedGreen" UriSource="./images/cost_icons/cost_icon_red_green.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianColorless" UriSource="./images/cost_icons/cost_icon_phy_colorless.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianWhite" UriSource="./images/cost_icons/cost_icon_phy_white.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianBlue" UriSource="./images/cost_icons/cost_icon_phy_blue.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianBlack" UriSource="./images/cost_icons/cost_icon_phy_black.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianRed" UriSource="./images/cost_icons/cost_icon_phy_red.png" />
+        <BitmapImage x:Key="img_CostIconPhyrexianGreen" UriSource="./images/cost_icons/cost_icon_phy_green.png" />
+        <BitmapImage x:Key="img_CostIconTap" UriSource="./images/cost_icons/cost_icon_tap.png" />
+        <BitmapImage x:Key="img_CostIconUntap" UriSource="./images/cost_icons/cost_icon_untap.png" />
+
+        <!-- Other Images -->
         <BitmapImage x:Key="img_DarksignIcon" UriSource="./images/darksign_icon.png" />
         <BitmapImage x:Key="img_FrameWhite" UriSource="./images/white_border.png" />
         <BitmapImage x:Key="img_FrameBlue" UriSource="./images/blue_border.png" />

@@ -11,6 +11,7 @@ namespace MTGSetGenerator
         public static void InitDataClasses()
         {
             CardColors.InitCardColors();
+            CardForms.InitCardForms();
             CardFrames.InitCardFrames();
             CardTypes.InitCardTypes();
             CostIcons.InitCostIcons();

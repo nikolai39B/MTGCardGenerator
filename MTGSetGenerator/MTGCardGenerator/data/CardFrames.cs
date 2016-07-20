@@ -46,7 +46,7 @@ namespace MTGSetGenerator
 
         public class CardFrame
         {
-            public CardFrame(BitmapImage defaultFrame, BitmapImage creatureFrame, BitmapImage planeswalkerFrame)
+            public CardFrame(BitmapImage defaultFrame, BitmapImage creatureFrame, BitmapImage planeswalkerFrame/*, BitmapImage artifactFrame, BitmapImage tokenFrame*/)
             {
                 DefaultFrame = defaultFrame;
                 CreatureFrame = creatureFrame;

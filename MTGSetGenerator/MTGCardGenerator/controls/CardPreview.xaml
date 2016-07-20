@@ -8,12 +8,19 @@
     <Canvas Name="cnvs_CardPreview" Height="340" HorizontalAlignment="Center" Width="243">
         <!-- Card Frame and Image -->
         <Image Name="img_CardPicture" Canvas.Left="20" Canvas.Top="39" Height="151" Width="203" Source="{StaticResource img_Raime}" />
-        <Image Name="img_CardFrame" Source="{StaticResource img_FrameGold}" Height="340" Width="243" />
+        <Image Name="img_CardFrame" Source="{StaticResource img_FrameSilver}" Height="340" Width="243" />
 
         <!-- Card Name and Casting Cost -->
-        <TextBlock Name="tbl_CardName" Canvas.Left="22" Canvas.Top="20" Style="{StaticResource tbl_MtgCardTitle}" Text="Fume Knight Raime" />
-        <StackPanel Name="sp_CardCastingCostIcons" Canvas.Right="18" Canvas.Top="17" Orientation="Horizontal" FlowDirection="RightToLeft" >
-        </StackPanel>
+        <Viewbox Name="vb_CardName" Canvas.Left="22" Canvas.Top="20" Height="16" HorizontalAlignment="Left" Stretch="Uniform" StretchDirection="Both" >
+            <TextBlock Name="tbl_CardName" Style="{StaticResource tbl_MtgCardTitle}" Text="Fume Knight Raime" />
+        </Viewbox>
+        <Viewbox Name="vb_CardCastingCostIcons" Canvas.Right="20" Canvas.Top="21" Height="14" HorizontalAlignment="Right" Stretch="Uniform" StretchDirection="Both" >
+            <StackPanel Name="sp_CardCastingCostIcons" FlowDirection="RightToLeft" Orientation="Horizontal" VerticalAlignment="Center" >
+                <Image Source="{StaticResource img_CostIconRed}" Style="{StaticResource img_CastingCostIcon}" />
+                <Image Source="{StaticResource img_CostIconRed}" Style="{StaticResource img_CastingCostIcon}" />
+                <Image Source="{StaticResource img_CostIcon05}" Style="{StaticResource img_CastingCostIcon}" />
+            </StackPanel>
+        </Viewbox>
 
         <!-- Card Type and Set Icon -->
         <Viewbox Canvas.Left="22" Canvas.Top="192" Height="15" HorizontalAlignment="Left" Stretch="Uniform" StretchDirection="Both"  Width="183">

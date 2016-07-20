@@ -9,7 +9,8 @@ namespace MTGSetGenerator
 {
     public interface IAddNewCardPage
     {
-        event EventHandler CardDetailsChanged;
         void ResetToDefault();
+        void RefreshCardPreview();
+        IAddNewCardPage GenerateNextAddNewCardPage(out bool isFinalPage);
     }
 }

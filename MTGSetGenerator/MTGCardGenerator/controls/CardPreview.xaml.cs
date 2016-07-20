@@ -33,7 +33,7 @@ namespace MTGSetGenerator
 
                 // Set default resources
                 defaultCardPicture = FindResource("img_GrayFill") as BitmapImage;
-                defaultCardFrame = CardFrames.Frames[CardFrames.Label.GOLD].DefaultFrame;
+                defaultCardFrame = CardFrames.Frames[CardFrames.Label.SILVER].DefaultFrame;
                 defaultSetIcon = FindResource("img_SetIconBackground") as BitmapImage;
 
             
@@ -78,7 +78,7 @@ namespace MTGSetGenerator
             }
 
             SetCardPicture(defaultCardPicture);
-            SetCardFrame(CardFrames.Label.GOLD, CardTypes.Label.INSTANT);
+            SetCardFrame(CardFrames.Label.SILVER, CardTypes.Label.INSTANT);
 
             SetCardName("");
             SetCardCost(new List<CostIcons.Label>());
@@ -146,6 +146,7 @@ namespace MTGSetGenerator
         public void SetCardName(string name)
         {
             tbl_CardName.Text = name;
+            UpdateCardNameAndCastIconsControlsWidths();
         }
 
         /// <summary>
@@ -154,7 +155,23 @@ namespace MTGSetGenerator
         /// <param name="costIcons">The cost to set for the card.</param>
         public void SetCardCost(List<CostIcons.Label> costIcons)
         {
+            sp_CardCastingCostIcons.Children.Clear();
 
+            // Reverse the cost icons so that they display properly (since in the stackpanel, the items are arranged right to left)
+            List<CostIcons.Label> reversedCostIcons = new List<CostIcons.Label>(costIcons);
+            reversedCostIcons.Reverse();
+
+            foreach (var icon in reversedCostIcons)
+            {
+                Image iconControl = new Image();
+                iconControl.Source = CostIcons.Icons[icon].Icon;
+                iconControl.Style = Application.Current.FindResource("img_CastingCostIcon") as Style;
+
+                sp_CardCastingCostIcons.Children.Add(iconControl);
+            }
+
+            sp_CardCastingCostIcons.UpdateLayout();
+            UpdateCardNameAndCastIconsControlsWidths();
         }
 
         /// <summary>
@@ -269,6 +286,25 @@ namespace MTGSetGenerator
         //-----------//
         // Utilities //
         //-----------//
+
+        private int cardNameAndCastIconsControlTotalWidth = 201;
+
+        /// <summary>
+        /// Updates the widths of the card name and cast icons controls so that the controls do not overlap.
+        /// </summary>
+        private void UpdateCardNameAndCastIconsControlsWidths()
+        {
+            // Calculate remaining width
+            int margin = 3;
+            int remainingWidth = cardNameAndCastIconsControlTotalWidth - margin;
+
+            // Calculate ratio
+            double percentOfWidthForName = tbl_CardName.ActualWidth / (tbl_CardName.ActualWidth + sp_CardCastingCostIcons.ActualWidth);
+
+            // Assign widths
+            vb_CardName.Width = Math.Max(percentOfWidthForName * remainingWidth, 0.0);
+            vb_CardCastingCostIcons.Width = Math.Max((1 - percentOfWidthForName) * remainingWidth, 0.0);
+        }
 
         /// <summary>
         /// Crops the given card image to fit neatly in the allocated space in the card preview.
