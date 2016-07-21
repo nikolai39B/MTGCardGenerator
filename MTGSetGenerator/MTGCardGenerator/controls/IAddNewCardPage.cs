@@ -11,6 +11,7 @@ namespace MTGSetGenerator
     {
         void ResetToDefault();
         void RefreshCardPreview();
+        bool CheckForErrors();
         IAddNewCardPage GenerateNextAddNewCardPage(out bool isFinalPage);
     }
 }

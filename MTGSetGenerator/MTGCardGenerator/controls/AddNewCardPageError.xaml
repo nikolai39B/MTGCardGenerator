@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="MTGSetGenerator.AddNewCardPageError"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="305">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="80*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="tbl_Error" Grid.Column="1" Text="Error message goes here. It should also support wrapping pretty well." Style="{StaticResource tbl_Error}" TextWrapping="Wrap" />
+    </Grid>
+</UserControl>

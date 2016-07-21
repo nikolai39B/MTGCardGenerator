@@ -101,6 +101,13 @@ namespace MTGSetGenerator
                 throw new InvalidOperationException("No current page; cannot move to next page.");
             }
 
+            // Check the current page for errors
+            bool errorsOnPage = CurrentPage.CheckForErrors();
+            if (errorsOnPage)
+            {
+                return;
+            }
+
             bool nextPageIsLastPage;
             IAddNewCardPage nextPage = CurrentPage.GenerateNextAddNewCardPage(out nextPageIsLastPage);
 

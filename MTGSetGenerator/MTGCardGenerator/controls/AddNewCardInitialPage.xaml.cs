@@ -78,11 +78,13 @@ namespace MTGSetGenerator
         public void ResetToDefault()
         {
             tb_Name.Text = "";
+            uc_CardNameError.Visibility = Visibility.Collapsed;
 
             rb_Standard.IsChecked = true;
 
             CardImage = null;
             CardImageFullPath = "";
+            uc_CardImageError.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -99,6 +101,35 @@ namespace MTGSetGenerator
             // TODO update SetCardFrame() call once tokens and transform cards are supported
             Preview.SetCardFrame(CardFrames.Label.SILVER, CardTypes.Label.INSTANT);
             Preview.SetCardPicture(CardImage);
+        }
+
+        /// <summary>
+        /// Checks the page for errors and displays them on the UI.
+        /// </summary>
+        /// <returns>True if the page has errors; false otherwise.</returns>
+        public bool CheckForErrors()
+        {
+            bool hasErrors = false;
+
+            // Check name
+            uc_CardNameError.Visibility = Visibility.Collapsed;
+            if (CardName == "")
+            {
+                hasErrors = true;
+                uc_CardNameError.Visibility = Visibility.Visible;
+                uc_CardNameError.ErrorMessage = "Please supply a name.";
+            }
+
+            // Check image
+            uc_CardImageError.Visibility = Visibility.Collapsed;
+            if (CardImage == null)
+            {
+                hasErrors = true;
+                uc_CardImageError.Visibility = Visibility.Visible;
+                uc_CardImageError.ErrorMessage = "Please supply an image.";
+            }
+
+            return hasErrors;
         }
 
         /// <summary>

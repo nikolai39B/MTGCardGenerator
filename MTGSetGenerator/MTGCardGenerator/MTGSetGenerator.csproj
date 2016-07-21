@@ -89,6 +89,9 @@
     <Compile Include="controls\AddNewCardInitialPage.xaml.cs">
       <DependentUpon>AddNewCardInitialPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\AddNewCardPageError.xaml.cs">
+      <DependentUpon>AddNewCardPageError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\CardPreview.xaml.cs">
       <DependentUpon>CardPreview.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\AddNewCardInitialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\AddNewCardPageError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

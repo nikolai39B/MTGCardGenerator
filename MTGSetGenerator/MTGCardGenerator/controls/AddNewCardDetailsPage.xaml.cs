@@ -95,6 +95,17 @@ namespace MTGSetGenerator
         }
 
         /// <summary>
+        /// Checks the page for errors and displays them on the UI.
+        /// </summary>
+        /// <returns>True if the page has errors; false otherwise.</returns>
+        public bool CheckForErrors()
+        {
+            bool hasErrors = false;
+
+            return hasErrors;
+        }
+
+        /// <summary>
         /// Generates and returns the next add new card page.
         /// </summary>
         /// <param name="isFinalPage">True if the next page is the final page; false otherwise.</param>

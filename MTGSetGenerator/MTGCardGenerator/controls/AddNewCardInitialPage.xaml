@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MTGSetGenerator"
              mc:Ignorable="d" d:DesignWidth="305">
     <StackPanel Grid.Column="0" Margin="0 0 5 0" VerticalAlignment="Center">
         <!-- Card Name -->
-        <Grid Margin="0 0 0 15">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" />
                 <ColumnDefinition Width="80*" />
@@ -15,9 +16,10 @@
             <TextBlock Grid.Column="0" Style="{StaticResource tbl_Label}">Name:</TextBlock>
             <TextBox Name="tb_Name" Grid.Column="1" TextChanged="tb_UiElement_TextChanged" />
         </Grid>
+        <local:AddNewCardPageError x:Name="uc_CardNameError" ErrorMessage="Card name error." Margin="0 2 0 0" />
 
         <!-- Form Type -->
-        <Grid Margin="0 0 0 15" >
+        <Grid Margin="0 15 0 0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" />
                 <ColumnDefinition Width="80*" />
@@ -35,7 +37,7 @@
         </Grid>
 
         <!-- Image -->
-        <Grid>
+        <Grid Margin="0 15 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" />
                 <ColumnDefinition Width="50*" />
@@ -46,6 +48,7 @@
             <TextBlock Name="tbl_ImageFilename" Grid.Column="1" Style="{StaticResource tbl_Default}" />
             <Button Name="b_Browse" Click="b_Browse_Click"  Content="Browse..." Grid.Column="2" HorizontalAlignment="Right" Width="75" />
         </Grid>
+        <local:AddNewCardPageError x:Name="uc_CardImageError" ErrorMessage="Card image error."  Margin="0 2 0 0"/>
     </StackPanel>
 </UserControl>
 

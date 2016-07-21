@@ -33,7 +33,6 @@ namespace MTGSetGenerator
 
             ResetToDefault();
             RefreshCardPreview();
-            //InvokeCardDetailsChanged();
         }
 
         //--------------------//
@@ -103,6 +102,17 @@ namespace MTGSetGenerator
             Preview.SetCardCost(Cost);
 
             Preview.SetCardType(BaseType, IsLegendary, IsTribal, Supertype, AuxType, Subtype);
+        }
+
+        /// <summary>
+        /// Checks the page for errors and displays them on the UI.
+        /// </summary>
+        /// <returns>True if the page has errors; false otherwise.</returns>
+        public bool CheckForErrors()
+        {
+            bool hasErrors = false;
+
+            return hasErrors;
         }
 
         /// <summary>
